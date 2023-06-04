@@ -1,5 +1,5 @@
 # 去除根目录下的.idea文件和运行生成的out文件
-/.idea/
-/out/
+.idea
+out
 # 去除log结尾的文件
 *.log
