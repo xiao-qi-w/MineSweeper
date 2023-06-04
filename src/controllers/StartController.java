@@ -38,6 +38,7 @@ public class StartController {
             // 获取Controller
             GameController controller = loader.getController();
             // 游戏初始化操作
+
             controller.initialize();
             // 设置Stage
             Stage stage = new Stage();
