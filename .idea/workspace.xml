@@ -3,18 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="99c8bb78-eca7-4816-8c38-f91fcf5d8e03" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitgnore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MineSweeper.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/application/Constant.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/application/Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/application/MineSweeper.class" beforeDir="false" />
@@ -27,18 +16,6 @@
       <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/images/boom.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/images/guess.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/images/mark.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/Constant.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/MineSweeper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/GameController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/StartController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/button.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fxmls/game.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fxmls/start.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/MineSweeper.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/boom.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/guess.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/mark.png" beforeDir="false" />
     </list>
     <disabled>
       <disabled_changelists>
@@ -188,7 +165,7 @@
     <property name="last_opened_file_path" value="$USER_HOME$/.ssh/id_ed25519" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -252,19 +229,6 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -334,7 +298,8 @@
       <workItem from="1685861174302" duration="1454000" />
       <workItem from="1685862670818" duration="1361000" />
       <workItem from="1685864049100" duration="8168000" />
-      <workItem from="1685872849274" duration="872000" />
+      <workItem from="1685872849274" duration="1737000" />
+      <workItem from="1685935176472" duration="76000" />
     </task>
     <servers />
   </component>
