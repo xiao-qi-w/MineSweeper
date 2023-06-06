@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -16,10 +17,12 @@ import java.io.IOException;
  * @author: 郭小柒w
  * @time: 2023/5/31
  */
-public class StartController {
+public class MenuController {
 
     @FXML
-    private AnchorPane rootStage; // 父窗口面板
+    private AnchorPane anchorPane; // 父窗口面板
+    @FXML
+    private ImageView boom; // 炸弹图片
 
     public void initialize() {
         // TODO: 如有需要初始化的内容，请在此方法内完成
@@ -28,7 +31,7 @@ public class StartController {
     /**
      * 点击开始新游戏
      */
-    public void onStartClick() {
+    public void onPlayClick() {
         try {
             // 加载迷宫主界面布局文件
             FXMLLoader loader = new FXMLLoader();
@@ -38,20 +41,19 @@ public class StartController {
             // 获取Controller
             GameController controller = loader.getController();
             // 游戏初始化操作
-
-            controller.initialize();
+            controller.initialize(9,9,10);
             // 设置Stage
             Stage stage = new Stage();
             stage.setResizable(false);
             stage.getIcons().add(new Image("/images/MineSweeper.png"));
             stage.setScene(scene);
             // 设置父窗体
-            stage.initOwner(rootStage.getScene().getWindow());
+            stage.initOwner(anchorPane.getScene().getWindow());
             // 设置除当前窗体外其他窗体均不可编辑
             stage.initModality(Modality.WINDOW_MODAL);
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error on [Class:MenuController, Method:onPlayClick]=>" + e);
         }
     }
 
@@ -74,5 +76,12 @@ public class StartController {
      */
     public void onAboutClick() {
         System.out.println("about clicked");
+    }
+
+    /**
+     * 炸弹爆炸动画
+     */
+    public void onBoomClick() {
+        boom.setImage(new Image("images/boomed.png"));
     }
 }

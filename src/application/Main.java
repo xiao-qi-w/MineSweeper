@@ -19,7 +19,7 @@ public class Main extends Application {
 		try {
 			// 加载布局文件
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("/fxmls/start.fxml"));
+			loader.setLocation(getClass().getResource("/fxmls/menu.fxml"));
 			Parent root = loader.load();
 			// 设置窗体内容和标题
 			Scene scene = new Scene(root);

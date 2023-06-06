@@ -1,9 +1,11 @@
 package application;
 
+import utils.Constant;
+
 import java.util.HashSet;
 import java.util.Random;
 
-import static application.Constant.*;
+import static utils.Constant.*;
 
 /**
  * @description: 扫雷类，包括扫雷游戏的基本功能，其中游戏地图指记录地雷分布以及地雷周围数字统计情况的二维数组
@@ -11,7 +13,7 @@ import static application.Constant.*;
  * @time: 2023/5/31
  */
 public class MineSweeper {
-    // 初级(8×8,10雷)、中级(16×16,40雷)、高级(16×30,99雷)
+    // 初级(9×9,10雷)、中级(16×16,40雷)、高级(16×30,99雷)
     // 随机数
     private Random rand;
     // 不同难度规格的宽高

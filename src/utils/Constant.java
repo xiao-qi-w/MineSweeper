@@ -1,4 +1,4 @@
-package application;
+package utils;
 
 /**
  * @description: 游戏中的常量或全局变量统一放在此类管理

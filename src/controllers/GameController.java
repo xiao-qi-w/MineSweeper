@@ -1,12 +1,11 @@
 package controllers;
 
+import application.MineSweeper;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-
 
 /**
  * @description:
@@ -19,17 +18,23 @@ public class GameController {
     @FXML
     private GridPane grid;          // 网格布局
 
-    public void initialize() {
-        // TODO: 如有需要初始化的内容，请在此方法内完成
+    private MineSweeper mineSweeper;
+
+    public void initialize(int width, int height, int boom) {
+        mineSweeper = new MineSweeper(width, height, boom, new int[width][height]);
         // 填充图形
-        for (int i = 0; i < 8; ++i) {
-            for (int j = 0; j < 8; ++j) {
-                Rectangle rect = new Rectangle();
-                rect.setHeight(40);
-                rect.setWidth(40);
-                rect.setFill(Color.GREY);
-                GridPane.setMargin(rect, new Insets(1,1,1,1));
-                grid.add(rect, j, i);
+        for (int i = 0; i < width; ++i) {
+            for (int j = 0; j < height; ++j) {
+                Button button = new Button();
+                button.setPrefSize(44.0,44.0);
+//                button.setStyle("-fx-background-color: #d2d2d2");
+                button.setOnMouseClicked(event->{
+                    int column = GridPane.getColumnIndex((Node)event.getSource());
+                    int row = GridPane.getRowIndex((Node)event.getSource());
+                    System.out.println("GridPane clicked at column: " + column + ", row: " + row);
+                });
+//                GridPane.setMargin(button, new Insets(1, 1, 1, 1));
+                grid.add(button, j, i);
             }
         }
     }
