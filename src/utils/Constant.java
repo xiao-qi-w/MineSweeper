@@ -20,7 +20,7 @@ public class Constant {
     public static byte WIN = 1;
     public static byte UNSURE = 0;
     public static byte LOSS = -1;
-    public static byte STATE = WIN;
+    public static byte STATE = UNSURE;
 
     // 数字常量 [0:空白格, 9:地雷, 10:旗帜标记, 11:问号标记, 99:边界标记，超过这个数字代表当前格子已被点开]
     public static final byte BLANK = 0;

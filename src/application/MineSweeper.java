@@ -23,6 +23,38 @@ public class MineSweeper {
     // 游戏地图
     private int[][] map;
 
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getBoom() {
+        return boom;
+    }
+
+    public void setBoom(int boom) {
+        this.boom = boom;
+    }
+
+    public int[][] getMap() {
+        return map;
+    }
+
+    public void setMap(int[][] map) {
+        this.map = map;
+    }
+
     public MineSweeper(int height, int width, int boom, int[][] map) {
         this.rand = new Random();
         this.height = height;
@@ -92,8 +124,9 @@ public class MineSweeper {
      */
     public void clickCell(int x, int y) {
         if (map[x][y] == BLANK) {
-            // 点击到空白区域，递归判断上下左右四个方向
-            for (int i = 1; i < 8; i += 2) {
+            map[x][y] += 100;
+            // 点击到空白区域，递归判断周围8个方向
+            for (int i = 0; i < 8; i += 1) {
                 int newX = x + positions[i][0];
                 int newY = y + positions[i][1];
                 if (newX > -1 && newX < height && newY > -1 && newY < width && map[newX][newY] != BOOM) {
@@ -103,7 +136,7 @@ public class MineSweeper {
         } else if(map[x][y] == BOOM) {
             // 点击到地雷，游戏状态设置为失败
             STATE = LOSS;
-        } else {
+        } else if(map[x][y] < BOUND){
             // 点击到数字格，数值加100用于区分是否已被点开
             map[x][y] += 100;
         }
@@ -111,17 +144,13 @@ public class MineSweeper {
 
     public static void main(String[] args) {
         MineSweeper ms = new MineSweeper(8, 8, 10, new int[8][8]);
-        for (int[] row : ms.map) {
+        ms.print();
+    }
+
+    public void print() {
+        for (int[] row : map) {
             for (int x : row) {
                 System.out.print(x + " ");
-            }
-            System.out.println();
-        }
-        System.out.println('\n');
-        ms.clickCell(3, 3);
-        for(int[] row : ms.map){
-            for(int x : row) {
-                System.out.print(x+" ");
             }
             System.out.println();
         }
