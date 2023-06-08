@@ -33,7 +33,7 @@ public class MenuController {
      */
     public void onPlayClick() {
         try {
-            // 加载迷宫主界面布局文件
+            // 加载游戏界面布局文件
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fxmls/game.fxml"));
             Parent root = loader.load();

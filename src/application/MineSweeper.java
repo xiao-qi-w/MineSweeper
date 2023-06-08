@@ -67,6 +67,7 @@ public class MineSweeper {
             }
         }
         this.init();
+        this.print();
     }
 
     /**
