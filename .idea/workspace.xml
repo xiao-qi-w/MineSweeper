@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="99c8bb78-eca7-4816-8c38-f91fcf5d8e03" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/MineSweeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/MineSweeper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/button.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fxmls/dialog.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fxmls/game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxmls/game.fxml" afterDir="false" />
     </list>
     <disabled>
       <disabled_changelists>
@@ -153,15 +152,15 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/fxmls" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/images" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\JetBrains\idea\IdeaProjects\MineSweeper\src\fxmls" />
       <recent name="E:\JetBrains\idea\IdeaProjects\MineSweeper\src\images" />
+      <recent name="E:\JetBrains\idea\IdeaProjects\MineSweeper\src\fxmls" />
       <recent name="E:\JetBrains\idea\IdeaProjects\MineSweep\src" />
     </key>
   </component>
@@ -225,13 +224,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -306,7 +307,8 @@
       <workItem from="1686036833933" duration="9082000" />
       <workItem from="1686047695265" duration="344000" />
       <workItem from="1686134325856" duration="3929000" />
-      <workItem from="1686213793120" duration="6180000" />
+      <workItem from="1686213793120" duration="6324000" />
+      <workItem from="1686302591226" duration="2324000" />
     </task>
     <servers />
   </component>
@@ -364,6 +366,17 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controllers/GameController.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

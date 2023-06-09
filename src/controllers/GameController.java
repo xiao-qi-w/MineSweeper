@@ -3,20 +3,12 @@ package controllers;
 import application.MineSweeper;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 import static utils.Constant.*;
 
@@ -30,6 +22,8 @@ public class GameController {
     private BorderPane borderPane; // 父窗口面板
     @FXML
     private GridPane grid;          // 网格布局
+    @FXML
+    private Button reset; // 笑脸按钮
 
     private ObservableList<Node> buttons;// 获取GridPane包含的按钮集合
     private MineSweeper mineSweeper;
@@ -48,6 +42,8 @@ public class GameController {
             }
         }
         this.buttons = grid.getChildren();
+        String pathb = "images/failed.png";
+        this.reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + pathb + ")");
     }
 
     // 处理点击事件
@@ -80,45 +76,22 @@ public class GameController {
                     }
                 }
             } else if(STATE == WIN) {
-                //TODO show dialog
-                showDialog("You win");
+                String path = "images/fail.png";
+                reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
             } else {
                 String path = "images/fail.png";
-                Button button = (Button)buttons.get(row * mineSweeper.getWidth() + column);
-                button.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                showDialog("You loss");
+                reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
             }
         }
     }
 
-    public void showDialog(String title) {
-        try {
-            // 加载迷提示窗界面布局文件
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fxmls/dialog.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            /*// 获取Controller
-            GameController controller = loader.getController();
-            // 游戏初始化操作
-            controller.initialize(9,9,10);
-            // 设置Stage*/
-            Stage stage = new Stage();
-            stage.setResizable(false);
-            // stage.getIcons().add(new Image("/images/MineSweeper.png"));
-            stage.setScene(scene);
-            // 设置父窗体
-            stage.initOwner(borderPane.getScene().getWindow());
-            // 设置除当前窗体外其他窗体均不可编辑
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.show();
-        } catch (IOException e) {
-            System.out.println("Error on [Class:MenuController, Method:onPlayClick]=>" + e);
+    public void onResetClick() {
+        if(STATE != UNSURE) {
+            STATE = UNSURE;
+            String path = "images/failed.png";
+            reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
         }
+        buttons.clear();
+        initialize(mineSweeper.getWidth(), mineSweeper.getHeight(), mineSweeper.getBoom());
     }
 }

@@ -6,11 +6,12 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Button?>
 <BorderPane fx:id="borderPane"
-        maxHeight="-Infinity" maxWidth="-Infinity"
-        minHeight="-Infinity" minWidth="-Infinity"
-        prefHeight="520.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171"
-        xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameController">
+            maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="520.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameController">
     <center>
         <GridPane fx:id="grid" BorderPane.alignment="CENTER">
         </GridPane>
@@ -53,7 +54,12 @@
                        BorderPane.alignment="CENTER"/>
             </right>
             <center>
-                <AnchorPane prefHeight="98.0" prefWidth="382.0" BorderPane.alignment="CENTER"/>
+                <AnchorPane prefHeight="98.0" prefWidth="382.0" BorderPane.alignment="CENTER">
+                    <Button fx:id="reset" prefWidth="62.0" prefHeight="62.0"
+                            AnchorPane.topAnchor="18.0" AnchorPane.leftAnchor="160.0"
+                            onMouseClicked="#onResetClick">
+                    </Button>
+                </AnchorPane>
             </center>
         </BorderPane>
     </top>
