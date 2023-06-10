@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static utils.Constant.*;
+
 /**
  * @description: 游戏初始页
  * @author: 郭小柒w
@@ -41,7 +43,15 @@ public class MenuController {
             // 获取Controller
             GameController controller = loader.getController();
             // 游戏初始化操作
-            controller.initialize(9,9,10);
+            if(DEGREE == EASY) {
+                controller.initialize(9,9,10);
+            } else if(DEGREE == MEDIUM) {
+                controller.initialize(16,16,40);
+            } else if(DEGREE == HARD) {
+                controller.initialize(16,30,99);
+            } else {
+                // TODO 自定义游戏难度
+            }
             // 设置Stage
             Stage stage = new Stage();
             stage.setResizable(false);

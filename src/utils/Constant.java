@@ -33,4 +33,23 @@ public class Constant {
     public static final byte[][] positions = new byte[][]{
             {-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}
     };
+
+    enum DEGREE {
+        EASY(9, 9, 10),
+        MEDIUM(16, 16, 40),
+        HARD(16, 30, 99),
+        CUSTOM();
+
+        //
+        int width, height, boom;
+
+        DEGREE(int width, int height, int boom) {
+            this.width = width;
+            this.height = height;
+            this.boom = boom;
+        }
+
+        DEGREE() {
+        }
+    }
 }

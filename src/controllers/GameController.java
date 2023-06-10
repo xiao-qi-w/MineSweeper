@@ -1,13 +1,12 @@
 package controllers;
 
-import application.MineSweeper;
+import components.MineSweeper;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 import static utils.Constant.*;
@@ -18,8 +17,6 @@ import static utils.Constant.*;
  * @time: 2023/6/2
  */
 public class GameController {
-    @FXML
-    private BorderPane borderPane; // 父窗口面板
     @FXML
     private GridPane grid;          // 网格布局
     @FXML
