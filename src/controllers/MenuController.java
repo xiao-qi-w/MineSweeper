@@ -27,7 +27,7 @@ public class MenuController {
     private ImageView boom; // 炸弹图片
 
     public void initialize() {
-        // TODO: 如有需要初始化的内容，请在此方法内完成
+        // TODO: 如有需要初始化的内容, 请在此方法内完成
     }
 
     /**
@@ -43,15 +43,7 @@ public class MenuController {
             // 获取Controller
             GameController controller = loader.getController();
             // 游戏初始化操作
-            if(DEGREE == EASY) {
-                controller.initialize(9,9,10);
-            } else if(DEGREE == MEDIUM) {
-                controller.initialize(16,16,40);
-            } else if(DEGREE == HARD) {
-                controller.initialize(16,30,99);
-            } else {
-                // TODO 自定义游戏难度
-            }
+            controller.initialize();
             // 设置Stage
             Stage stage = new Stage();
             stage.setResizable(false);

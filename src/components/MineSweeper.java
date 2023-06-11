@@ -8,7 +8,7 @@ import java.util.Random;
 import static utils.Constant.*;
 
 /**
- * @description: 扫雷类，包括扫雷游戏的基本功能，其中游戏地图指记录地雷分布以及地雷周围数字统计情况的二维数组
+ * @description: 扫雷类, 包括扫雷游戏的基本功能, 其中游戏地图指记录地雷分布以及地雷周围数字统计情况的二维数组
  * @author: 郭小柒w
  * @time: 2023/5/31
  */
@@ -74,14 +74,14 @@ public class MineSweeper {
      * 生成新游戏的地图数据
      */
     public void init() {
-        // 用于记录地雷的位置，避免重复选择
+        // 用于记录地雷的位置, 避免重复选择
         HashSet<Integer> set = new HashSet();
         // 确定随机数据范围
         int count = height * width;
         // 开始随机
         for (int t = boom; t > 0; ) {
             int index = rand.nextInt(count);
-            // 如果当前位置可以设置为地雷，标记该位置，待分配地雷个数减一
+            // 如果当前位置可以设置为地雷, 标记该位置, 待分配地雷个数减一
             if (!set.contains(index)) {
                 set.add(index);
                 map[index / width][index % width] = BOOM;
@@ -119,14 +119,14 @@ public class MineSweeper {
     }
 
     /**
-     * 展开与当前位置相连的所有空白区域，包括包裹这层空白区域数字边界
+     * 展开与当前位置相连的所有空白区域, 包括包裹这层空白区域数字边界
      * @param x 横坐标
      * @param y 纵坐标
      */
     public void clickCell(int x, int y) {
         if (map[x][y] == BLANK) {
             map[x][y] += 100;
-            // 点击到空白区域，递归判断周围8个方向
+            // 点击到空白区域, 递归判断周围8个方向
             for (int i = 0; i < 8; i += 1) {
                 int newX = x + positions[i][0];
                 int newY = y + positions[i][1];
@@ -135,10 +135,10 @@ public class MineSweeper {
                 }
             }
         } else if(map[x][y] == BOOM) {
-            // 点击到地雷，游戏状态设置为失败
+            // 点击到地雷, 游戏状态设置为失败
             STATE = LOSS;
         } else if(map[x][y] < BOUND){
-            // 点击到数字格，数值加100用于区分是否已被点开
+            // 点击到数字格, 数值加100用于区分是否已被点开
             map[x][y] += 100;
         }
     }
