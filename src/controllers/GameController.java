@@ -1,6 +1,5 @@
 package controllers;
 
-import components.GameEnum;
 import components.MineSweeper;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 import java.util.HashMap;
@@ -21,6 +21,8 @@ import static utils.Constant.*;
  * @time: 2023/6/2
  */
 public class GameController {
+    @FXML  // 底层布局
+    private AnchorPane anchorPane;
     @FXML  // 网格布局
     private GridPane grid;
     @FXML  // 笑脸按钮
@@ -52,8 +54,8 @@ public class GameController {
             }
         }
         this.buttons = grid.getChildren();
-        /*String pathb = "images/failed.png";
-        this.reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + pathb + ")");*/
+        String pathb = "images/smile.png";
+        this.reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + pathb + ")");
     }
 
     // 处理点击事件
@@ -86,10 +88,10 @@ public class GameController {
                     }
                 }
             } else if (STATE == WIN) {
-                String path = "images/fail.png";
+                String path = "images/win.png";
                 reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
             } else {
-                String path = "images/fail.png";
+                String path = "images/loss.png";
                 reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
             }
         }
@@ -98,7 +100,7 @@ public class GameController {
     public void onResetClick() {
         if (STATE != UNSURE) {
             STATE = UNSURE;
-            String path = "images/failed.png";
+            String path = "images/smile.png";
             reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
         }
         buttons.clear();
@@ -107,6 +109,36 @@ public class GameController {
 
     public void paintBorder() {
         HashMap<String, Double> params = GAME.genParamsMap();
-        // TODO 设置标签的长高
+        double thickness = params.get("thickness");
+        double offset = params.get("offset");
+        double lenVertical = params.get("lenVertical");
+        double lenHorizontal = params.get("lenHorizontal");
+        // 设置窗口大小
+        anchorPane.setPrefSize(lenHorizontal + thickness * 2, lenVertical);
+        // 设置网格布局位置
+        AnchorPane.setTopAnchor(grid, offset + thickness);
+        // 设置重置按钮的位置
+        AnchorPane.setTopAnchor(reset, (anchorPane.getWidth() - 50) / 2);
+        AnchorPane.setLeftAnchor(reset, offset / 2);
+        // 设置边框标签的大小和位置
+        labelTop.setPrefSize(lenHorizontal, thickness);
+        AnchorPane.setLeftAnchor(labelTop, thickness);
+        AnchorPane.setTopAnchor(labelTop, 0.0);
+
+        labelCenter.setPrefSize(lenHorizontal, thickness);
+        AnchorPane.setLeftAnchor(labelCenter, thickness);
+        AnchorPane.setTopAnchor(labelCenter, offset);
+
+        labelBottom.setPrefSize(lenHorizontal, thickness);
+        AnchorPane.setLeftAnchor(labelBottom, thickness);
+        AnchorPane.setTopAnchor(labelBottom, lenVertical - thickness);
+
+        labelLeft.setPrefSize(thickness, lenVertical);
+        AnchorPane.setLeftAnchor(labelLeft, 0.0);
+        AnchorPane.setTopAnchor(labelLeft, 0.0);
+
+        labelRight.setPrefSize(thickness, lenVertical);
+        AnchorPane.setLeftAnchor(labelRight, lenHorizontal + thickness);
+        AnchorPane.setTopAnchor(labelRight, 0.0);
     }
 }

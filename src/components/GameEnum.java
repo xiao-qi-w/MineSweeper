@@ -31,13 +31,13 @@ public enum GameEnum {
     public HashMap<String, Double> genParamsMap() {
         HashMap<String, Double> params = new HashMap();
         // 标签宽度, 固定值10
-        double widthOfLabel = 10.0;
-        params.put("width", widthOfLabel);
+        double thickness = 10.0;
+        params.put("thickness", thickness);
         // 中间位置的标签框相对于布局顶部的偏移量, 固定值110
         double offset = 110.0;
         params.put("offset", offset);
         // 边框标签边的水平和竖直长度, 宽度为固定值10
-        params.put("lenVertical", height * size + widthOfLabel * 2 + offset);
+        params.put("lenVertical", height * size + thickness * 2 + offset);
         params.put("lenHorizontal", width * size);
         return params;
     }

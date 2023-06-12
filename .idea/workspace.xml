@@ -3,11 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="99c8bb78-eca7-4816-8c38-f91fcf5d8e03" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MineSweeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MineSweeper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/GameEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GameEnum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/MenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fxmls/game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxmls/game.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/fail.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/failed.png" beforeDir="false" />
     </list>
     <disabled>
       <disabled_changelists>
@@ -226,15 +226,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -312,7 +310,8 @@
       <workItem from="1686213793120" duration="6324000" />
       <workItem from="1686302591226" duration="2634000" />
       <workItem from="1686365910259" duration="4436000" />
-      <workItem from="1686466610553" duration="2896000" />
+      <workItem from="1686466610553" duration="3202000" />
+      <workItem from="1686551199896" duration="3817000" />
     </task>
     <servers />
   </component>
@@ -376,8 +375,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/controllers/GameController.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="5" />
+          <line>57</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
