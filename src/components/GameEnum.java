@@ -2,15 +2,18 @@ package components;
 
 import java.util.HashMap;
 
+import static utils.Constant.WINDOW_HEIGHT;
+import static utils.Constant.WINDOW_WIDTH;
+
 /**
  * @description: 游戏难度枚举
  * @author: 郭小柒w
  * @time: 2023/6/11
  */
 public enum GameEnum {
-    EASY(9, 9, 10, 40),
-    MEDIUM(16, 16, 40, 35),
-    HARD(16, 30, 99, 30),
+    EASY(9, 9, 10, 40.0),
+    MEDIUM(16, 16, 40, 35.0),
+    HARD(30, 16, 99, 30.0),
     CUSTOM();
 
     // 游戏难度规格[宽 x 高], 对应难度地雷个数
@@ -37,8 +40,13 @@ public enum GameEnum {
         double offset = 110.0;
         params.put("offset", offset);
         // 边框标签边的水平和竖直长度, 宽度为固定值10
-        params.put("lenVertical", height * size + thickness * 2 + offset);
-        params.put("lenHorizontal", width * size);
+        double lenVertical = height * size + thickness * 2 + offset;
+        double lenHorizontal = width * size;
+        params.put("lenVertical", lenVertical);
+        params.put("lenHorizontal", lenHorizontal);
+        // 计算实际窗口宽高
+        WINDOW_WIDTH += lenHorizontal + thickness * 2;
+        WINDOW_HEIGHT += lenVertical;
         return params;
     }
 }

@@ -3,13 +3,16 @@ package controllers;
 import components.MineSweeper;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 
 import java.util.HashMap;
 
@@ -39,12 +42,15 @@ public class GameController {
         int height = GAME.height;
         int boom = GAME.boom;
         double size = GAME.size;
-        this.mineSweeper = new MineSweeper(width, height, boom, new int[width][height]);
-        // 绘制边框
-        paintBorder();
+        mineSweeper = new MineSweeper(width, height, boom, new int[height][width]);
+        // 绘制界面
+        paintBorders();
         // 向网格布局中填充按钮
-        for (int i = 0; i < width; ++i) {
-            for (int j = 0; j < height; ++j) {
+        if (buttons != null) {
+            buttons.clear();
+        }
+        for (int i = 0; i < height; ++i) {
+            for (int j = 0; j < width; ++j) {
                 Button button = new Button();
                 button.setPrefSize(size, size);
                 button.setOnMouseClicked(event -> {
@@ -53,9 +59,7 @@ public class GameController {
                 grid.add(button, j, i);
             }
         }
-        this.buttons = grid.getChildren();
-        String pathb = "images/smile.png";
-        this.reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + pathb + ")");
+        buttons = grid.getChildren();
     }
 
     // 处理点击事件
@@ -82,7 +86,6 @@ public class GameController {
                             if (value != BLANK) {
                                 button.setText(value + "");
                             }
-                            button.setStyle("-fx-background-color: #FFFFFF; -fx-border-color: #4F4E48;");
                             button.setDisable(true);
                         }
                     }
@@ -103,23 +106,28 @@ public class GameController {
             String path = "images/smile.png";
             reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
         }
-        buttons.clear();
         initialize();
     }
 
-    public void paintBorder() {
+    public void paintBorders() {
         HashMap<String, Double> params = GAME.genParamsMap();
         double thickness = params.get("thickness");
         double offset = params.get("offset");
         double lenVertical = params.get("lenVertical");
         double lenHorizontal = params.get("lenHorizontal");
         // 设置窗口大小
-        anchorPane.setPrefSize(lenHorizontal + thickness * 2, lenVertical);
+        anchorPane.setPrefSize(WINDOW_WIDTH, lenVertical);
+
         // 设置网格布局位置
         AnchorPane.setTopAnchor(grid, offset + thickness);
+        AnchorPane.setLeftAnchor(grid, thickness);
+
         // 设置重置按钮的位置
-        AnchorPane.setTopAnchor(reset, (anchorPane.getWidth() - 50) / 2);
-        AnchorPane.setLeftAnchor(reset, offset / 2);
+        String pathb = "images/smile.png";
+        reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + pathb + ")");
+        AnchorPane.setLeftAnchor(reset, thickness + (lenHorizontal - 50) / 2);
+        AnchorPane.setTopAnchor(reset, (offset - 50) / 2);
+
         // 设置边框标签的大小和位置
         labelTop.setPrefSize(lenHorizontal, thickness);
         AnchorPane.setLeftAnchor(labelTop, thickness);
@@ -140,5 +148,8 @@ public class GameController {
         labelRight.setPrefSize(thickness, lenVertical);
         AnchorPane.setLeftAnchor(labelRight, lenHorizontal + thickness);
         AnchorPane.setTopAnchor(labelRight, 0.0);
+
+        anchorPane.setOnMouseClicked(event -> System.out.println("anchorPane:" + anchorPane.widthProperty().doubleValue() + "," + anchorPane.heightProperty().doubleValue()));
+        labelLeft.setOnMouseClicked(event -> System.out.println("labelLeft:" + labelLeft.widthProperty().doubleValue() + "," + labelLeft.heightProperty().doubleValue()));
     }
 }

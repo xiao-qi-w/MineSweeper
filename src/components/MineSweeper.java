@@ -55,10 +55,10 @@ public class MineSweeper {
         this.map = map;
     }
 
-    public MineSweeper(int height, int width, int boom, int[][] map) {
+    public MineSweeper(int width, int height, int boom, int[][] map) {
         this.rand = new Random();
-        this.height = height;
         this.width = width;
+        this.height = height;
         this.boom = boom;
         this.map = new int[height][width];
         for (int i = 0; i < height; ++i) {
@@ -143,17 +143,25 @@ public class MineSweeper {
         }
     }
 
-    public static void main(String[] args) {
-        MineSweeper ms = new MineSweeper(8, 8, 10, new int[8][8]);
-        ms.print();
-    }
-
+    /**
+     * 打印地图数据
+     */
     public void print() {
+        StringBuffer sb = new StringBuffer();
+        for(int i = 0; i < width; ++i) {
+            sb.append('=').append('=');
+        }
+        sb.append('\n');
         for (int[] row : map) {
             for (int x : row) {
-                System.out.print(x + " ");
+                sb.append(x).append(' ');
             }
-            System.out.println();
+            sb.append('\n');
         }
+        for(int i = 0; i < width; ++i) {
+            sb.append('=').append('=');
+        }
+        sb.append('\n');
+        System.out.println(sb.toString());
     }
 }

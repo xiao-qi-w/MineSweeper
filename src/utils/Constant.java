@@ -8,6 +8,9 @@ import components.GameEnum;
  * @time: 2023/6/4
  */
 public class Constant {
+    // 游戏窗口实际宽高, 仅限在本电脑测出的偏差值，目前未找到较好的解决方法
+    public static double WINDOW_WIDTH = 6.0;
+    public static double WINDOW_HEIGHT = 35.0;
     // 游戏难度
     public static GameEnum GAME = GameEnum.EASY;
 

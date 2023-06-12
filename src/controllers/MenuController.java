@@ -40,13 +40,13 @@ public class MenuController {
             loader.setLocation(getClass().getResource("/fxmls/game.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            // 获取Controller
-            GameController controller = loader.getController();
-            // 游戏初始化操作
-            controller.initialize();
             // 设置Stage
             Stage stage = new Stage();
             stage.setResizable(false);
+            stage.setOnShown(event -> {
+                stage.setWidth(WINDOW_WIDTH); // 设置实际宽度
+                stage.setHeight(WINDOW_HEIGHT); // 设置实际高度
+            });
             stage.getIcons().add(new Image("/images/MineSweeper.png"));
             stage.setScene(scene);
             // 设置父窗体
