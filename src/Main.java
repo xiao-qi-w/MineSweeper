@@ -27,7 +27,8 @@ public class Main extends Application {
 			stage.setScene(scene);
 			stage.show();
 		} catch(Exception e) {
-			System.out.println("Error on [Class:Main, Method:start]=>" + e);
+			System.out.println("Error on [Class:Main, Method:start]=>");
+			e.printStackTrace();
 		}
 	}
 

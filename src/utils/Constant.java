@@ -1,6 +1,7 @@
 package utils;
 
 import components.GameEnum;
+import javafx.scene.paint.Color;
 
 /**
  * @description: 游戏中的常量或全局变量统一放在此类管理
@@ -26,6 +27,18 @@ public class Constant {
     public static final byte FLAG = 10;
     public static final byte GUESS = 11;
     public static final byte BOUND = 99;
+
+    // 数字颜色常量 从1-8
+    public static final Color[] COLORS = {
+            Color.rgb(0,0, 255),
+            Color.rgb(0,128, 0),
+            Color.rgb(255,0, 0),
+            Color.rgb(0,0, 128),
+            Color.rgb(128,0, 0),
+            Color.rgb(0,128, 128),
+            Color.rgb(0,0, 0),
+            Color.rgb(128,128, 128)
+    };
 
     // 八个方位坐标
     public static final byte[][] positions = new byte[][]{

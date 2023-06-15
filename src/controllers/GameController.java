@@ -10,9 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.util.HashMap;
 
@@ -38,21 +38,17 @@ public class GameController {
     private MineSweeper mineSweeper;
 
     public void initialize() {
-        int width = GAME.width;
-        int height = GAME.height;
-        int boom = GAME.boom;
-        double size = GAME.size;
-        mineSweeper = new MineSweeper(width, height, boom, new int[height][width]);
+        mineSweeper = new MineSweeper(GAME.width, GAME.height, GAME.boom, new int[GAME.height][GAME.width]);
         // 绘制界面
         paintBorders();
         // 向网格布局中填充按钮
         if (buttons != null) {
             buttons.clear();
         }
-        for (int i = 0; i < height; ++i) {
-            for (int j = 0; j < width; ++j) {
+        for (int i = 0; i < GAME.height; ++i) {
+            for (int j = 0; j < GAME.width; ++j) {
                 Button button = new Button();
-                button.setPrefSize(size, size);
+                button.setPrefSize(GAME.buttonSize, GAME.buttonSize);
                 button.setOnMouseClicked(event -> {
                     handleEvent(event);
                 });
@@ -84,6 +80,12 @@ public class GameController {
                         if (map[i][j] > BOUND) {
                             int value = map[i][j] - 100;
                             if (value != BLANK) {
+                                // 消除空白填充
+                                button.setPadding(new Insets(0.0));
+                                // 创建粗体字体
+                                Font boldFont = Font.font("System", FontWeight.BOLD, GAME.numSize);
+                                button.setFont(boldFont);
+                                button.setTextFill(COLORS[value - 1]);
                                 button.setText(value + "");
                             }
                             button.setDisable(true);

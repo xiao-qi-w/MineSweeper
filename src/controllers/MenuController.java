@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.IOException;
 
@@ -21,13 +22,12 @@ import static utils.Constant.*;
  */
 public class MenuController {
 
-    @FXML
-    private AnchorPane anchorPane; // 父窗口面板
-    @FXML
-    private ImageView boom; // 炸弹图片
+    @FXML  // 底层布局
+    private AnchorPane anchorPane;
+    @FXML  // 炸弹图片
+    private ImageView boom;
 
     public void initialize() {
-        // TODO: 如有需要初始化的内容, 请在此方法内完成
     }
 
     /**
@@ -47,12 +47,17 @@ public class MenuController {
                 stage.setWidth(WINDOW_WIDTH); // 设置实际宽度
                 stage.setHeight(WINDOW_HEIGHT); // 设置实际高度
             });
+            stage.setOnCloseRequest(event -> {
+                WINDOW_WIDTH = 6.0;
+                WINDOW_HEIGHT = 35.0;
+            });
             stage.getIcons().add(new Image("/images/MineSweeper.png"));
             stage.setScene(scene);
             // 设置父窗体
             stage.initOwner(anchorPane.getScene().getWindow());
             // 设置除当前窗体外其他窗体均不可编辑
             stage.initModality(Modality.WINDOW_MODAL);
+
             stage.show();
         } catch (IOException e) {
             System.out.println("Error on [Class:MenuController, Method:onPlayClick]=>" + e);
@@ -70,7 +75,26 @@ public class MenuController {
      * 点击开始新游戏
      */
     public void onSettingsClick() {
-        System.out.println("Settings clicked");
+        try {
+            // 加载设置界面布局文件
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fxmls/settings.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            // 设置Stage
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.getIcons().add(new Image("/images/MineSweeper.png"));
+            stage.setScene(scene);
+            // 设置父窗体
+            stage.initOwner(anchorPane.getScene().getWindow());
+            // 设置除当前窗体外其他窗体均不可编辑
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("Error on [Class:MenuController, Method:onSettingsClick]=>");
+            e.printStackTrace();
+        }
     }
 
     /**
