@@ -21,6 +21,9 @@ public class Constant {
     public static byte LOSS = -1;
     public static byte STATE = UNSURE;
 
+    // 局内声音设置
+    public static boolean SOUND = true;
+
     // 数字常量 [0:空白格, 9:地雷, 10:旗帜标记, 11:问号标记, 99:边界标记, 超过这个数字代表当前格子已被点开]
     public static final byte BLANK = 0;
     public static final byte BOOM = 9;
@@ -29,7 +32,7 @@ public class Constant {
     public static final byte BOUND = 99;
 
     // 数字颜色常量 从1-8
-    public static final Color[] COLORS = {
+    public static final Color[] NUMS = {
             Color.rgb(0,0, 255),
             Color.rgb(0,128, 0),
             Color.rgb(255,0, 0),

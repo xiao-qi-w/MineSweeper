@@ -85,7 +85,7 @@ public class GameController {
                                 // 创建粗体字体
                                 Font boldFont = Font.font("System", FontWeight.BOLD, GAME.numSize);
                                 button.setFont(boldFont);
-                                button.setTextFill(COLORS[value - 1]);
+                                button.setTextFill(NUMS[value - 1]);
                                 button.setText(value + "");
                             }
                             button.setDisable(true);
@@ -151,7 +151,5 @@ public class GameController {
         AnchorPane.setLeftAnchor(labelRight, lenHorizontal + thickness);
         AnchorPane.setTopAnchor(labelRight, 0.0);
 
-        anchorPane.setOnMouseClicked(event -> System.out.println("anchorPane:" + anchorPane.widthProperty().doubleValue() + "," + anchorPane.heightProperty().doubleValue()));
-        labelLeft.setOnMouseClicked(event -> System.out.println("labelLeft:" + labelLeft.widthProperty().doubleValue() + "," + labelLeft.heightProperty().doubleValue()));
     }
 }
