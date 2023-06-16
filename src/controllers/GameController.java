@@ -10,7 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -63,17 +65,31 @@ public class GameController {
         // 获取按钮所在行列
         int row = GridPane.getRowIndex((Node) event.getSource());
         int column = GridPane.getColumnIndex((Node) event.getSource());
+        int[][] map = mineSweeper.getMap();
 
         if (event.getButton() == MouseButton.SECONDARY) {
-            // 右键单击
-            String path = "images/mark.png";
+            // 获取按钮
             Button button = (Button) buttons.get(row * mineSweeper.getWidth() + column);
+            // 右键单击, 定义图片路径
+            String path = null;
+
+            if(map[row][column] == FLAG) {
+                // 如果已经被标记, 路径更换为问号图片, 表示不确定
+                path = "images/guess.png";
+                map[row][column] = UNSURE;
+            } else if(map[row][column] == UNSURE){
+                // 移除图片, 重新统计周围雷的数目
+                map[row][column] = mineSweeper.countBoom(row, column);
+            } else {
+                // 未被标记过, 添加标记
+                path = "images/flag.png";
+                map[row][column] = FLAG;
+            }
             button.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
         } else {
             // 左键单击
             mineSweeper.clickCell(row, column);
             if (STATE == UNSURE) {
-                int[][] map = mineSweeper.getMap();
                 for (int i = 0; i < mineSweeper.getHeight(); ++i) {
                     for (int j = 0; j < mineSweeper.getWidth(); ++j) {
                         Button button = (Button) buttons.get(i * mineSweeper.getWidth() + j);
@@ -88,6 +104,7 @@ public class GameController {
                                 button.setTextFill(NUMS[value - 1]);
                                 button.setText(value + "");
                             }
+                            button.setStyle("-fx-background-color: #FFFFFF");
                             button.setDisable(true);
                         }
                     }
@@ -100,6 +117,7 @@ public class GameController {
                 reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
             }
         }
+        grid.setGridLinesVisible(true);
     }
 
     public void onResetClick() {
@@ -125,8 +143,8 @@ public class GameController {
         AnchorPane.setLeftAnchor(grid, thickness);
 
         // 设置重置按钮的位置
-        String pathb = "images/smile.png";
-        reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + pathb + ")");
+        String path = "images/smile.png";
+        reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
         AnchorPane.setLeftAnchor(reset, thickness + (lenHorizontal - 50) / 2);
         AnchorPane.setTopAnchor(reset, (offset - 50) / 2);
 
@@ -150,6 +168,5 @@ public class GameController {
         labelRight.setPrefSize(thickness, lenVertical);
         AnchorPane.setLeftAnchor(labelRight, lenHorizontal + thickness);
         AnchorPane.setTopAnchor(labelRight, 0.0);
-
     }
 }
