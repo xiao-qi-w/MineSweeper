@@ -3,18 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="99c8bb78-eca7-4816-8c38-f91fcf5d8e03" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/GameEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GameEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MineSweeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MineSweeper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/SettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fxmls/menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxmls/menu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/MineSweeper.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/boom.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/boomed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/guess.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/guess.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fxmls/game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxmls/game.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/LedNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/LedNumber.java" afterDir="false" />
     </list>
     <disabled>
       <disabled_changelists>
@@ -227,15 +218,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -318,7 +307,8 @@
       <workItem from="1686820877690" duration="6054000" />
       <workItem from="1686901880410" duration="6057000" />
       <workItem from="1686909048097" duration="4545000" />
-      <workItem from="1686970201906" duration="6206000" />
+      <workItem from="1686970201906" duration="6315000" />
+      <workItem from="1686986460406" duration="5878000" />
     </task>
     <servers />
   </component>

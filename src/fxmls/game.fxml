@@ -13,27 +13,27 @@
             xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controllers.GameController">
     <children>
-        <Label fx:id="labelTop" style="-fx-background-color: #A3A3A3;">
+        <Label fx:id="labelTop" style="-fx-background-color: #8e7f7f; ">
             <font>
                 <Font size="1.0"/>
             </font>
         </Label>
-        <Label fx:id="labelBottom" style="-fx-background-color: #A3A3A3;">
+        <Label fx:id="labelBottom" style="-fx-background-color: #8e7f7f;">
             <font>
                 <Font size="1.0"/>
             </font>
         </Label>
-        <Label fx:id="labelLeft" style="-fx-background-color: #A3A3A3;">
+        <Label fx:id="labelLeft" style="-fx-background-color: #8e7f7f;">
             <font>
                 <Font size="1.0"/>
             </font>
         </Label>
-        <Label fx:id="labelRight" style="-fx-background-color: #A3A3A3;">
+        <Label fx:id="labelRight" style="-fx-background-color: #8e7f7f;">
             <font>
                 <Font size="1.0"/>
             </font>
         </Label>
-        <Label fx:id="labelCenter" style="-fx-background-color: #A3A3A3;">
+        <Label fx:id="labelCenter" style="-fx-background-color: #8e7f7f;">
             <font>
                 <Font size="1.0"/>
             </font>

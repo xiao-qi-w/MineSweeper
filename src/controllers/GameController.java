@@ -69,29 +69,28 @@ public class GameController {
         int[][] map = mineSweeper.getMap();
 
         if (event.getButton() == MouseButton.SECONDARY) {
-            // 判断是否还有可用标记
-            if(REST_FLAG > 0) {
-                // 获取按钮
-                Button button = (Button) buttons.get(row * GAME.width + column);
-                // 右键单击, 定义图片路径
-                String path = null;
+            // 右键单击, 获取按钮
+            Button button = (Button) buttons.get(row * GAME.width + column);
+            // 定义图片路径
+            String path = null;
 
-                if(map[row][column] >= GUESS) {
-                    // 不设置图片, 还原雷的数目
-                    map[row][column] -= GUESS;
-                    REST_FLAG += 1;
-                } else if(map[row][column] >= FLAG){
-                    // 如果已经被标记, 路径更换为问号图片, 表示不确定
-                    path = GUESS_IMG;
-                    map[row][column] = map[row][column] - FLAG + GUESS;
-                } else {
-                    // 未被标记过, 添加标记
+            if (map[row][column] >= GUESS) {
+                // 不设置图片, 还原雷的数目
+                map[row][column] -= GUESS;
+                REST_FLAG += 1;
+            } else if (map[row][column] >= FLAG) {
+                // 如果已经被标记, 路径更换为问号图片, 表示不确定
+                path = GUESS_IMG;
+                map[row][column] = map[row][column] - FLAG + GUESS;
+            } else {
+                // 未被标记过, 判断是否还有可用标记
+                if(REST_FLAG > 0) {
                     path = FLAG_IMG;
                     map[row][column] += FLAG;
                     REST_FLAG -= 1;
                 }
-                button.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
             }
+            button.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
         } else {
             // 左键单击
             mineSweeper.clickCell(row, column);
@@ -119,7 +118,7 @@ public class GameController {
                     }
                 }
                 // 判断全部非雷格子是否全部点开
-                if(count + GAME.bomb == GAME.width * GAME.height) {
+                if (count + GAME.bomb == GAME.width * GAME.height) {
                     STATE = WIN;
                     reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + WIN_IMG + ")");
                 }
