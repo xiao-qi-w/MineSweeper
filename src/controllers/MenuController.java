@@ -9,7 +9,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.IOException;
 
@@ -25,7 +24,7 @@ public class MenuController {
     @FXML  // 底层布局
     private AnchorPane anchorPane;
     @FXML  // 炸弹图片
-    private ImageView boom;
+    private ImageView bomb;
 
     public void initialize() {
     }
@@ -51,7 +50,7 @@ public class MenuController {
                 WINDOW_WIDTH = 6.0;
                 WINDOW_HEIGHT = 35.0;
             });
-            stage.getIcons().add(new Image("/images/MineSweeper.png"));
+            stage.getIcons().add(new Image(ICON_IMG));
             stage.setScene(scene);
             // 设置父窗体
             stage.initOwner(anchorPane.getScene().getWindow());
@@ -84,7 +83,7 @@ public class MenuController {
             // 设置Stage
             Stage stage = new Stage();
             stage.setResizable(false);
-            stage.getIcons().add(new Image("/images/MineSweeper.png"));
+            stage.getIcons().add(new Image(ICON_IMG));
             stage.setScene(scene);
             // 设置父窗体
             stage.initOwner(anchorPane.getScene().getWindow());
@@ -108,6 +107,6 @@ public class MenuController {
      * 炸弹爆炸动画
      */
     public void onBoomClick() {
-        boom.setImage(new Image("images/boomed.png"));
+        bomb.setImage(new Image(EXPLODED_IMG));
     }
 }

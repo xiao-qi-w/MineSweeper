@@ -15,9 +15,9 @@
         prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171"
         xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuController">
 <children>
-    <ImageView fx:id="boom" onMouseClicked="#onBoomClick" fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="455.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="355.0" AnchorPane.topAnchor="110.0">
+    <ImageView fx:id="bomb" onMouseClicked="#onBoomClick" fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="455.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="355.0" AnchorPane.topAnchor="110.0">
         <image>
-            <Image url="@/images/boom.png" />
+            <Image url="@/images/unexploded.png" />
         </image>
     </ImageView>
     <Label alignment="CENTER" layoutX="161.0" layoutY="75.0" prefHeight="50.0" prefWidth="200.0" text="扫    雷" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="50.0">

@@ -10,9 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -38,9 +36,12 @@ public class GameController {
     private ObservableList<Node> buttons;
     // 定义游戏运行需要的类变量
     private MineSweeper mineSweeper;
+    // 剩余标记数
+    private static int REST_FLAG = 0;
 
     public void initialize() {
-        mineSweeper = new MineSweeper(GAME.width, GAME.height, GAME.boom, new int[GAME.height][GAME.width]);
+        REST_FLAG = GAME.bomb;
+        mineSweeper = new MineSweeper(GAME.width, GAME.height, GAME.bomb, new int[GAME.height][GAME.width]);
         // 绘制界面
         paintBorders();
         // 向网格布局中填充按钮
@@ -68,63 +69,70 @@ public class GameController {
         int[][] map = mineSweeper.getMap();
 
         if (event.getButton() == MouseButton.SECONDARY) {
-            // 获取按钮
-            Button button = (Button) buttons.get(row * mineSweeper.getWidth() + column);
-            // 右键单击, 定义图片路径
-            String path = null;
+            // 判断是否还有可用标记
+            if(REST_FLAG > 0) {
+                // 获取按钮
+                Button button = (Button) buttons.get(row * GAME.width + column);
+                // 右键单击, 定义图片路径
+                String path = null;
 
-            if(map[row][column] == FLAG) {
-                // 如果已经被标记, 路径更换为问号图片, 表示不确定
-                path = "images/guess.png";
-                map[row][column] = UNSURE;
-            } else if(map[row][column] == UNSURE){
-                // 移除图片, 重新统计周围雷的数目
-                map[row][column] = mineSweeper.countBoom(row, column);
-            } else {
-                // 未被标记过, 添加标记
-                path = "images/flag.png";
-                map[row][column] = FLAG;
+                if(map[row][column] >= GUESS) {
+                    // 不设置图片, 还原雷的数目
+                    map[row][column] -= GUESS;
+                    REST_FLAG += 1;
+                } else if(map[row][column] >= FLAG){
+                    // 如果已经被标记, 路径更换为问号图片, 表示不确定
+                    path = GUESS_IMG;
+                    map[row][column] = map[row][column] - FLAG + GUESS;
+                } else {
+                    // 未被标记过, 添加标记
+                    path = FLAG_IMG;
+                    map[row][column] += FLAG;
+                    REST_FLAG -= 1;
+                }
+                button.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
             }
-            button.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
         } else {
             // 左键单击
             mineSweeper.clickCell(row, column);
             if (STATE == UNSURE) {
-                for (int i = 0; i < mineSweeper.getHeight(); ++i) {
-                    for (int j = 0; j < mineSweeper.getWidth(); ++j) {
-                        Button button = (Button) buttons.get(i * mineSweeper.getWidth() + j);
+                // count统计非雷格子已点开数目
+                int count = 0;
+                for (int i = 0; i < GAME.height; ++i) {
+                    for (int j = 0; j < GAME.height; ++j) {
+                        Button button = (Button) buttons.get(i * GAME.width + j);
                         if (map[i][j] > BOUND) {
+                            count += 1;
                             int value = map[i][j] - 100;
                             if (value != BLANK) {
                                 // 消除空白填充
                                 button.setPadding(new Insets(0.0));
                                 // 创建粗体字体
-                                Font boldFont = Font.font("System", FontWeight.BOLD, GAME.numSize);
+                                Font boldFont = Font.font("Arial", FontWeight.BOLD, GAME.numSize);
                                 button.setFont(boldFont);
                                 button.setTextFill(NUMS[value - 1]);
                                 button.setText(value + "");
                             }
-                            button.setStyle("-fx-background-color: #FFFFFF");
+                            button.setStyle("-fx-border-insets: 0.0; -fx-border-color: #7A7A7A");
                             button.setDisable(true);
                         }
                     }
                 }
-            } else if (STATE == WIN) {
-                String path = "images/win.png";
-                reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
-            } else {
-                String path = "images/loss.png";
-                reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
+                // 判断全部非雷格子是否全部点开
+                if(count + GAME.bomb == GAME.width * GAME.height) {
+                    STATE = WIN;
+                    reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + WIN_IMG + ")");
+                }
+            } else if (STATE == LOSS) {
+                reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + LOSS_IMG + ")");
             }
         }
-        grid.setGridLinesVisible(true);
     }
 
     public void onResetClick() {
         if (STATE != UNSURE) {
             STATE = UNSURE;
-            String path = "images/smile.png";
-            reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
+            reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + SMILE_IMG + ")");
         }
         initialize();
     }
@@ -143,8 +151,7 @@ public class GameController {
         AnchorPane.setLeftAnchor(grid, thickness);
 
         // 设置重置按钮的位置
-        String path = "images/smile.png";
-        reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
+        reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + SMILE_IMG + ")");
         AnchorPane.setLeftAnchor(reset, thickness + (lenHorizontal - 50) / 2);
         AnchorPane.setTopAnchor(reset, (offset - 50) / 2);
 

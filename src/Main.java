@@ -5,6 +5,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
+import static utils.Constant.ICON_IMG;
+
 /**
  * @description: 程序入口
  * @author: 郭小柒w
@@ -23,7 +25,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 			stage.setResizable(false);
 			stage.setTitle("扫雷");
-			stage.getIcons().add(new Image("/images/MineSweeper.png"));
+			stage.getIcons().add(new Image(ICON_IMG));
 			stage.setScene(scene);
 			stage.show();
 		} catch(Exception e) {

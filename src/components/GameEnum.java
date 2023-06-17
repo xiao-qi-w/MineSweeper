@@ -2,8 +2,7 @@ package components;
 
 import java.util.HashMap;
 
-import static utils.Constant.WINDOW_HEIGHT;
-import static utils.Constant.WINDOW_WIDTH;
+import static utils.Constant.*;
 
 /**
  * @description: 游戏难度枚举
@@ -17,14 +16,14 @@ public enum GameEnum {
     CUSTOM();
 
     // 游戏难度规格[宽 x 高], 对应难度地雷个数
-    public int width, height, boom;
+    public int width, height, bomb;
     // 网格尺寸
     public double buttonSize, numSize;
 
-    GameEnum(int width, int height, int boom, double buttonSize, double numSize) {
+    GameEnum(int width, int height, int bomb, double buttonSize, double numSize) {
         this.width = width;
         this.height = height;
-        this.boom = boom;
+        this.bomb = bomb;
         this.buttonSize = buttonSize;
         this.numSize = numSize;
     }

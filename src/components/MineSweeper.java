@@ -19,7 +19,7 @@ public class MineSweeper {
     // 不同难度规格的宽高
     private int width, height;
     // 地雷数目
-    private int boom;
+    private int bomb;
     // 游戏地图
     private int[][] map;
 
@@ -40,11 +40,11 @@ public class MineSweeper {
     }
 
     public int getBoom() {
-        return boom;
+        return bomb;
     }
 
-    public void setBoom(int boom) {
-        this.boom = boom;
+    public void setBoom(int bomb) {
+        this.bomb = bomb;
     }
 
     public int[][] getMap() {
@@ -55,11 +55,11 @@ public class MineSweeper {
         this.map = map;
     }
 
-    public MineSweeper(int width, int height, int boom, int[][] map) {
+    public MineSweeper(int width, int height, int bomb, int[][] map) {
         this.rand = new Random();
         this.width = width;
         this.height = height;
-        this.boom = boom;
+        this.bomb = bomb;
         this.map = new int[height][width];
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
@@ -79,7 +79,7 @@ public class MineSweeper {
         // 确定随机数据范围
         int count = height * width;
         // 开始随机
-        for (int t = boom; t > 0; ) {
+        for (int t = bomb; t > 0; ) {
             int index = rand.nextInt(count);
             // 如果当前位置可以设置为地雷, 标记该位置, 待分配地雷个数减一
             if (!set.contains(index)) {

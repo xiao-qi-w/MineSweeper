@@ -14,8 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
-import static utils.Constant.GAME;
-import static utils.Constant.SOUND;
+import static utils.Constant.*;
 
 /**
  * @description: 主要控制设置界面按钮选中后的行为
@@ -54,7 +53,7 @@ public class SettingsController {
                 custom.setSelected(true);
                 numWidth.setText(GAME.width + "");
                 numHeight.setText(GAME.height + "");
-                numBoom.setText(GAME.boom + "");
+                numBoom.setText(GAME.bomb + "");
             }
         }
         if (SOUND) {
@@ -115,16 +114,16 @@ public class SettingsController {
                 if (GAME == GameEnum.CUSTOM) {
                     GAME.width = Integer.parseInt(numWidth.getText());
                     GAME.height = Integer.parseInt(numHeight.getText());
-                    GAME.boom = Integer.parseInt(numBoom.getText());
+                    GAME.bomb = Integer.parseInt(numBoom.getText());
                 }
                 // 设置用于动画效果的图片
-                loading.setImage(new Image("/images/loading.png"));
+                loading.setImage(new Image(LOAD_IMG));
                 loading.setVisible(true);
                 // 点击保存时的动画效果,分两步, 1:旋转缓冲 2:图片淡出
                 RotateTransition transition1 = new RotateTransition(Duration.seconds(1), loading);
                 transition1.setByAngle(360); // 旋转角度
                 transition1.setOnFinished(event1 -> {
-                    loading.setImage(new Image("/images/save.png"));
+                    loading.setImage(new Image(SAVE_IMG));
                 });
 
                 FadeTransition transition2 = new FadeTransition(Duration.seconds(1), loading);
