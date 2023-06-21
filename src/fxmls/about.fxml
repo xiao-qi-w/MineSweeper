@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
 <AnchorPane fx:id="anchorPane"
-        xmlns="http://javafx.com/javafx"
+            xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.MenuController"
+            fx:controller="controllers.AboutController"
             prefHeight="500.0" prefWidth="400.0">
     <children>
+        <GridPane fx:id="grid" prefHeight="60" prefWidth="250" AnchorPane.topAnchor="50">
 
+        </GridPane>
     </children>
 
 

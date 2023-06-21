@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="99c8bb78-eca7-4816-8c38-f91fcf5d8e03" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/AboutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/AboutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fxmls/about.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxmls/about.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/LedNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/LedNumber.java" afterDir="false" />
     </list>
     <disabled>
@@ -165,6 +166,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="utils" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\JetBrains\idea\IdeaProjects\MineSweeper\src\images" />
       <recent name="E:\JetBrains\idea\IdeaProjects\MineSweeper\src\fxmls" />
@@ -213,17 +217,6 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -309,7 +302,8 @@
       <workItem from="1686970201906" duration="6315000" />
       <workItem from="1686986460406" duration="6237000" />
       <workItem from="1687252958292" duration="2857000" />
-      <workItem from="1687313746972" duration="5617000" />
+      <workItem from="1687313746972" duration="5679000" />
+      <workItem from="1687331724726" duration="15590000" />
     </task>
     <servers />
   </component>
@@ -367,6 +361,17 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/utils/LedNumber.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
