@@ -59,7 +59,8 @@ public class MenuController {
 
             stage.show();
         } catch (IOException e) {
-            System.out.println("Error on [Class:MenuController, Method:onPlayClick]=>" + e);
+            System.out.println("Error on [Class:MenuController, Method:onPlayClick]=>");
+            e.printStackTrace();
         }
     }
 
@@ -100,7 +101,26 @@ public class MenuController {
      * 点击开始新游戏
      */
     public void onAboutClick() {
-        System.out.println("about clicked");
+        try {
+            // 加载设置界面布局文件
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fxmls/about.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            // 设置Stage
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.getIcons().add(new Image(ICON_IMG));
+            stage.setScene(scene);
+            // 设置父窗体
+            stage.initOwner(anchorPane.getScene().getWindow());
+            // 设置除当前窗体外其他窗体均不可编辑
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("Error on [Class:MenuController, Method:onAboutClick]=>");
+            e.printStackTrace();
+        }
     }
 
     /**

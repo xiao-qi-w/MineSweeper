@@ -24,9 +24,9 @@ public class LedNumber {
         this.fontColor = Color.RED;
         this.fontColorHighlight = Color.DARKGRAY;
         this.backgroundColor = Color.BLACK;
-        this.lenH = 20.0;
-        this.lenB = 5.0;
-        this.lenT = (lenB - lenH) / 2;
+        this.lenH = 5.0;
+        this.lenB = 20.0;
+        this.lenT = lenB - lenH * 2;
 
         this.polygons = new Polygon[8];
         this.numbers = new int[][]{{0, 1, 2, 4, 6, 7},
@@ -48,6 +48,11 @@ public class LedNumber {
      * 构建点阵数字需要的边
      */
     public void init() {
+        for(int i = 0; i < 8; ++i) {
+            polygons[i] = new Polygon();
+        }
+        polygons[0].getPoints().addAll(paintTrapezoidal(1, 0.0, 0.0));
+        polygons[0].setStyle("-fx-background-color: #ec0707");
     }
 
     /**
@@ -57,16 +62,16 @@ public class LedNumber {
      * @param y 左上角纵坐标
      * @return 坐标数组
      */
-    public double[] paintTrapezoidal(byte toward, double x, double y) {
-        double[] points = new double[8];
-        points[0] = x;
-        points[1] = y;
-        points[2] = x + lenT;
-        points[3] = y;
-        points[4] = x - lenH;
-        points[5] = y - lenH;
-        points[6] = x + lenH;
-        points[7] = y + lenH;
+    public ArrayList<Double> paintTrapezoidal(int toward, double x, double y) {
+        ArrayList<Double> points = new ArrayList();
+        points.add(x);
+        points.add(y);
+        points.add(x + lenT);
+        points.add(y);
+        points.add(x + lenT + lenH);
+        points.add(y - lenH);
+        points.add(x - lenH);
+        points.add(y - lenH);
         return points;
     }
 }
