@@ -2,7 +2,8 @@ package components;
 
 import java.util.HashMap;
 
-import static Constant.*;
+import static components.Constant.WINDOW_WIDTH;
+import static components.Constant.WINDOW_HEIGHT;
 
 /**
  * @description: 游戏难度枚举

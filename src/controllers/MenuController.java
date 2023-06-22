@@ -79,6 +79,18 @@ public class MenuController {
             // 设置Stage
             Stage stage = new Stage();
             stage.setResizable(false);
+            if("onPlayClick".equals(method)) {
+                // 根据实际效果重置窗口大小
+                stage.setOnShown(event -> {
+                    stage.setWidth(WINDOW_WIDTH);
+                    stage.setHeight(WINDOW_HEIGHT);
+                });
+                // 还原更改的值
+                stage.setOnCloseRequest(event -> {
+                    WINDOW_WIDTH = 6.0;
+                    WINDOW_HEIGHT = 35.0;
+                });
+            }
             stage.getIcons().add(new Image(ICON_IMG));
             stage.setScene(scene);
             // 设置父窗体

@@ -5,10 +5,9 @@
 
 <?import javafx.scene.control.Button?>
 <AnchorPane fx:id="anchorPane"
-            xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.AboutController"
-            prefHeight="500.0" prefWidth="400.0">
+            prefHeight="500.0" prefWidth="400.0"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.AboutController">
     <children>
         <GridPane fx:id="grid" prefHeight="60" prefWidth="250" AnchorPane.topAnchor="50">
 

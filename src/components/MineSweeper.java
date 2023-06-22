@@ -3,7 +3,7 @@ package components;
 import java.util.HashSet;
 import java.util.Random;
 
-import static Constant.*;
+import static components.Constant.*;
 
 /**
  * @description: 扫雷类, 包括扫雷游戏的基本功能, 其中游戏地图指记录地雷分布以及地雷周围数字统计情况的二维数组
@@ -118,6 +118,7 @@ public class MineSweeper {
 
     /**
      * 展开与当前位置相连的所有空白区域, 包括包裹这层空白区域数字边界
+     *
      * @param x 横坐标
      * @param y 纵坐标
      */
@@ -132,10 +133,10 @@ public class MineSweeper {
                     clickCell(newX, newY);
                 }
             }
-        } else if(map[x][y] == BOOM) {
+        } else if (map[x][y] == BOOM) {
             // 点击到地雷, 游戏状态设置为失败
             STATE = LOSS;
-        } else if(map[x][y] < BOUND){
+        } else if (map[x][y] < BOUND) {
             // 点击到数字格, 数值加100用于区分是否已被点开
             map[x][y] += 100;
         }
@@ -146,7 +147,7 @@ public class MineSweeper {
      */
     public void print() {
         StringBuffer sb = new StringBuffer();
-        for(int i = 0; i < width; ++i) {
+        for (int i = 0; i < width; ++i) {
             sb.append('=').append('=');
         }
         sb.append('\n');
@@ -156,7 +157,7 @@ public class MineSweeper {
             }
             sb.append('\n');
         }
-        for(int i = 0; i < width; ++i) {
+        for (int i = 0; i < width; ++i) {
             sb.append('=').append('=');
         }
         sb.append('\n');

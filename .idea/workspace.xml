@@ -3,17 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="99c8bb78-eca7-4816-8c38-f91fcf5d8e03" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FileIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FileIO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/GameEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GameEnum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/MineSweeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MineSweeper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/AboutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/AboutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/RanksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/RanksController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fxmls/about.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxmls/about.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/LedNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LedNumber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/LedNumberSkin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LedNumberSkin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fxmls/game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxmls/game.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fxmls/ranks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxmls/ranks.fxml" afterDir="false" />
     </list>
     <disabled>
       <disabled_changelists>
@@ -326,7 +324,7 @@
       <workItem from="1687313746972" duration="5679000" />
       <workItem from="1687331724726" duration="15701000" />
       <workItem from="1687400772052" duration="5253000" />
-      <workItem from="1687417460701" duration="4445000" />
+      <workItem from="1687417460701" duration="12257000" />
     </task>
     <servers />
   </component>
@@ -392,6 +390,11 @@
           <url>file://$PROJECT_DIR$/src/controllers/AboutController.java</url>
           <line>34</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/components/FileIO.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

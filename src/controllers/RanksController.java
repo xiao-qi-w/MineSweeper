@@ -1,16 +1,16 @@
 package controllers;
 
 import components.FileIO;
-import components.GameEnum;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 
-import java.util.ArrayList;
-
-import static components.Constant.*;
+import static components.Constant.RECORD_PATHS;
 
 /**
  * @description: 排行榜页面控制逻辑
@@ -23,11 +23,13 @@ public class RanksController {
     @FXML  // 单选按钮, 难度
     private RadioButton easy, medium, hard;
     @FXML  // 排行展示表
-    private TableView table;
+    private TableView<String[]> table;
+    @FXML
+    private TableColumn<String[], String> name, time;
     // 单选按钮组
     private ToggleGroup degree;
     // 用于存放数据的列表
-    private ArrayList<String[]> data;
+    private ObservableList<String[]> data;
 
     public void initialize() {
         // 单选按钮分组
@@ -35,8 +37,10 @@ public class RanksController {
         easy.setToggleGroup(degree);
         medium.setToggleGroup(degree);
         hard.setToggleGroup(degree);
-        // 默认选中简单
+        // 默认选中简单, 并加载数据
         easy.setSelected(true);
+        data = FileIO.readFromFile(RECORD_PATHS[0]);
+        table.setItems(data);
         // 难度按钮选中事件
         degree.selectedToggleProperty().addListener(((observable, oldValue, newValue) -> {
             String id = ((RadioButton) newValue).getId();
@@ -48,7 +52,11 @@ public class RanksController {
             } else {
                 data = FileIO.readFromFile(RECORD_PATHS[2]);
             }
-
+            table.setItems(data);
         }));
+        table.setFixedCellSize(36.0);
+        // 设置每个 TableColumn 的 cellValueFactory
+        name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[0]));
+        time.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[1]));
     }
 }
