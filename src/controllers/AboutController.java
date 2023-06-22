@@ -4,10 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import utils.LedNumber;
+import components.LedNumber;
 
 /**
- * @description: 开发者信息界面
+ * @description: 开发者信息界面控制逻辑
  * @author: 郭小柒w
  * @time: 2023/6/21
  */
@@ -19,7 +19,7 @@ public class AboutController {
     @FXML
     private Button btn;
     private LedNumber[] leds = new LedNumber[3];
-    private int count = 0;
+    private int count = 90;
 
     public void initialize() {
         for (int i = 0; i < 3; ++i) {
@@ -34,7 +34,7 @@ public class AboutController {
     public void onAddClick() {
         count += 1;
         int f = count / 100;
-        int s = count / 10;
+        int s = count % 100 / 10;
         int t = count % 10;
         leds[0].switchSkin(f);
         leds[1].switchSkin(s);

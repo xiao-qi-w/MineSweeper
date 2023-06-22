@@ -16,10 +16,10 @@ import javafx.scene.text.FontWeight;
 
 import java.util.HashMap;
 
-import static utils.Constant.*;
+import static components.Constant.*;
 
 /**
- * @description:
+ * @description: 游戏进行中的控制逻辑
  * @author: 郭小柒w
  * @time: 2023/6/2
  */

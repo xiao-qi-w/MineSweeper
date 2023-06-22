@@ -2,7 +2,7 @@ package components;
 
 import java.util.HashMap;
 
-import static utils.Constant.*;
+import static Constant.*;
 
 /**
  * @description: 游戏难度枚举

@@ -12,10 +12,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static utils.Constant.*;
+import static components.Constant.*;
 
 /**
- * @description: 游戏初始页
+ * @description: 游戏初始页控制逻辑
  * @author: 郭小柒w
  * @time: 2023/5/31
  */

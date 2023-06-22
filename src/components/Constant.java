@@ -1,6 +1,5 @@
-package utils;
+package components;
 
-import components.GameEnum;
 import javafx.scene.paint.Color;
 
 /**
@@ -12,6 +11,7 @@ public class Constant {
     // 游戏窗口实际宽高, 仅限在本电脑测出的偏差值,目前未找到较好的解决方法
     public static double WINDOW_WIDTH = 6.0;
     public static double WINDOW_HEIGHT = 35.0;
+
     // 游戏难度
     public static GameEnum GAME = GameEnum.EASY;
 
@@ -35,14 +35,14 @@ public class Constant {
 
     // 数字颜色常量 从1-8
     public static final Color[] NUMS = {
-            Color.rgb(0,0, 255),
-            Color.rgb(0,128, 0),
-            Color.rgb(255,0, 0),
-            Color.rgb(0,0, 128),
-            Color.rgb(128,0, 0),
-            Color.rgb(0,128, 128),
-            Color.rgb(0,0, 0),
-            Color.rgb(128,128, 128)
+            Color.rgb(0, 0, 255),
+            Color.rgb(0, 128, 0),
+            Color.rgb(255, 0, 0),
+            Color.rgb(0, 0, 128),
+            Color.rgb(128, 0, 0),
+            Color.rgb(0, 128, 128),
+            Color.rgb(0, 0, 0),
+            Color.rgb(128, 128, 128)
     };
 
     // 八个方位坐标
@@ -61,4 +61,9 @@ public class Constant {
     public static final String FLAG_IMG = "/images/flag.png";
     public static final String GUESS_IMG = "/images/guess.png";
     public static final String ICON_IMG = "/images/icon.png";
+
+    // 排行榜文件相对路径前缀
+    public static final String[] RECORD_PATHS = {
+            "/ranks/easy.txt", "/ranks/medium.txt", "/ranks/hard.txt"
+    };
 }

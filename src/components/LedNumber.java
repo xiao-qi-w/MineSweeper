@@ -1,4 +1,4 @@
-package utils;
+package components;
 
 import javafx.scene.control.Control;
 import javafx.scene.control.Skin;

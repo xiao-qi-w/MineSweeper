@@ -5,7 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
-import static utils.Constant.ICON_IMG;
+import static components.Constant.ICON_IMG;
 
 /**
  * @description: 程序入口

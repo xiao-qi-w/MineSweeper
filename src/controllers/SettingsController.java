@@ -14,10 +14,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
-import static utils.Constant.*;
+import static components.Constant.*;
 
 /**
- * @description: 主要控制设置界面按钮选中后的行为
+ * @description: 设置界面控制逻辑
  * @author: 郭小柒w
  * @time: 2023/6/15
  */

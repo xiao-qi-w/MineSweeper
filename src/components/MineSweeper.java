@@ -1,11 +1,9 @@
 package components;
 
-import utils.Constant;
-
 import java.util.HashSet;
 import java.util.Random;
 
-import static utils.Constant.*;
+import static Constant.*;
 
 /**
  * @description: 扫雷类, 包括扫雷游戏的基本功能, 其中游戏地图指记录地雷分布以及地雷周围数字统计情况的二维数组
