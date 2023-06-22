@@ -33,94 +33,28 @@ public class MenuController {
      * 点击开始新游戏
      */
     public void onPlayClick() {
-        try {
-            // 加载游戏界面布局文件
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fxmls/game.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            // 设置Stage
-            Stage stage = new Stage();
-            stage.setResizable(false);
-            stage.setOnShown(event -> {
-                stage.setWidth(WINDOW_WIDTH); // 设置实际宽度
-                stage.setHeight(WINDOW_HEIGHT); // 设置实际高度
-            });
-            stage.setOnCloseRequest(event -> {
-                WINDOW_WIDTH = 6.0;
-                WINDOW_HEIGHT = 35.0;
-            });
-            stage.getIcons().add(new Image(ICON_IMG));
-            stage.setScene(scene);
-            // 设置父窗体
-            stage.initOwner(anchorPane.getScene().getWindow());
-            // 设置除当前窗体外其他窗体均不可编辑
-            stage.initModality(Modality.WINDOW_MODAL);
-
-            stage.show();
-        } catch (IOException e) {
-            System.out.println("Error on [Class:MenuController, Method:onPlayClick]=>");
-            e.printStackTrace();
-        }
+        openNewWindow("/fxmls/game.fxml", "onPlayClick");
     }
 
     /**
-     * 点击开始新游戏
+     * 点击打开排行榜
      */
     public void onRanksClick() {
-        System.out.println("ranks clicked");
+        openNewWindow("/fxmls/ranks.fxml", "onRanksClick");
     }
 
     /**
-     * 点击开始新游戏
+     * 点击打开设置页
      */
     public void onSettingsClick() {
-        try {
-            // 加载设置界面布局文件
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fxmls/settings.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            // 设置Stage
-            Stage stage = new Stage();
-            stage.setResizable(false);
-            stage.getIcons().add(new Image(ICON_IMG));
-            stage.setScene(scene);
-            // 设置父窗体
-            stage.initOwner(anchorPane.getScene().getWindow());
-            // 设置除当前窗体外其他窗体均不可编辑
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.show();
-        } catch (IOException e) {
-            System.out.println("Error on [Class:MenuController, Method:onSettingsClick]=>");
-            e.printStackTrace();
-        }
+        openNewWindow("/fxmls/settings.fxml", "onSettingsClick");
     }
 
     /**
-     * 点击开始新游戏
+     * 点击打开制作人信息页
      */
     public void onAboutClick() {
-        try {
-            // 加载设置界面布局文件
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fxmls/about.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            // 设置Stage
-            Stage stage = new Stage();
-            stage.setResizable(false);
-            stage.getIcons().add(new Image(ICON_IMG));
-            stage.setScene(scene);
-            // 设置父窗体
-            stage.initOwner(anchorPane.getScene().getWindow());
-            // 设置除当前窗体外其他窗体均不可编辑
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.show();
-        } catch (IOException e) {
-            System.out.println("Error on [Class:MenuController, Method:onAboutClick]=>");
-            e.printStackTrace();
-        }
+        openNewWindow("/fxmls/about.fxml", "onAboutClick");
     }
 
     /**
@@ -128,5 +62,33 @@ public class MenuController {
      */
     public void onBoomClick() {
         bomb.setImage(new Image(EXPLODED_IMG));
+    }
+
+    /**
+     * 打开新窗口
+     * @param filePath fxml文件相对路径
+     * @param method 方法名
+     */
+    public void openNewWindow(String filePath, String method) {
+        try {
+            // 加载设置界面布局文件
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(filePath));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            // 设置Stage
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.getIcons().add(new Image(ICON_IMG));
+            stage.setScene(scene);
+            // 设置父窗体
+            stage.initOwner(anchorPane.getScene().getWindow());
+            // 设置除当前窗体外其他窗体均不可编辑
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("Error on [Class:MenuController, Method:" + method + "]=>");
+            e.printStackTrace();
+        }
     }
 }

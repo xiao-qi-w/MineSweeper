@@ -4,8 +4,10 @@
     <list default="true" id="99c8bb78-eca7-4816-8c38-f91fcf5d8e03" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/AboutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/AboutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/MenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fxmls/about.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxmls/about.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/LedNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/LedNumber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/LedNumberSkin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/LedNumberSkin.java" afterDir="false" />
     </list>
     <disabled>
       <disabled_changelists>
@@ -221,6 +223,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -303,7 +316,8 @@
       <workItem from="1686986460406" duration="6237000" />
       <workItem from="1687252958292" duration="2857000" />
       <workItem from="1687313746972" duration="5679000" />
-      <workItem from="1687331724726" duration="15590000" />
+      <workItem from="1687331724726" duration="15701000" />
+      <workItem from="1687400772052" duration="5231000" />
     </task>
     <servers />
   </component>
@@ -366,9 +380,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/utils/LedNumber.java</url>
-          <line>19</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/src/controllers/AboutController.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

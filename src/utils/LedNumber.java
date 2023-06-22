@@ -10,27 +10,18 @@ import javafx.scene.control.Skin;
  */
 public class LedNumber extends Control {
 
-    // 十个数字外观
-    private Skin<LedNumber> skins[];
-
-    public LedNumber() {
-        createDefaultSkin();
-        /*this.skins = new Skin[10];
-        for (int i = 0; i < 10; ++i) {
-            skins[i] = createDefaultSkin(i);
-        }*/
-        setSkin(createDefaultSkin(7));
+    public LedNumber(int index) {
+        setSkin(createDefaultSkin(index));
     }
 
-    protected Skin<LedNumber> createDefaultSkin(int i) {
-        return new LedNumberSkin(this, i);
+    protected Skin<LedNumber> createDefaultSkin(int index) {
+        return new LedNumberSkin(this, index);
     }
 
-    /**
-     * 数字外观切换
-     * @param i 将外观切换为数字i
-     */
-    public void switchSkin(int i) {
-        setSkin(createDefaultSkin(i));
+    public void switchSkin(int index) {
+        // 清空当前控件的子节点, 重新添加
+        getChildren().clear();
+        LedNumber newLedNumber = new LedNumber(index);
+        getChildren().add(newLedNumber);
     }
 }

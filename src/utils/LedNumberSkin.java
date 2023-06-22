@@ -35,10 +35,6 @@ public class LedNumberSkin extends SkinBase<LedNumber> {
     // 指定外观数字
     private int index;
 
-    public Polygon[] getPolygons() {
-        return polygons;
-    }
-
     public LedNumberSkin(LedNumber ledNumber, int index) {
         super(ledNumber);
         this.index = index;

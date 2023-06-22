@@ -2,6 +2,7 @@
 
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
+
 <AnchorPane fx:id="anchorPane"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -11,6 +12,7 @@
         <GridPane fx:id="grid" prefHeight="60" prefWidth="250" AnchorPane.topAnchor="50">
 
         </GridPane>
+
     </children>
 
 

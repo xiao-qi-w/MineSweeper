@@ -1,6 +1,7 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import utils.LedNumber;
@@ -15,16 +16,28 @@ public class AboutController {
     private AnchorPane anchorPane;
     @FXML
     private GridPane grid;
+    @FXML
+    private Button btn;
+    private LedNumber[] leds = new LedNumber[3];
+    private int count = 0;
 
     public void initialize() {
-        LedNumber[] leds = new LedNumber[10];
-        for (int i = 0; i < 10; ++i) {
-            leds[i] = new LedNumber();
-            leds[i].switchSkin(i);
+        for (int i = 0; i < 3; ++i) {
+            leds[i] = new LedNumber(0);
         }
-        for(int i = 0; i < 10; ++i) {
+        for(int i = 0; i < 3; ++i) {
             grid.add(leds[i], i,0);
         }
         grid.setStyle("-fx-background-color: #000000; -fx-vgap: 2.0; -fx-hgap: 2.0; -fx-padding: 2.0");
+    }
+
+    public void onAddClick() {
+        count += 1;
+        int f = count / 100;
+        int s = count / 10;
+        int t = count % 10;
+        leds[0].switchSkin(f);
+        leds[1].switchSkin(s);
+        leds[2].switchSkin(t);
     }
 }
