@@ -2,6 +2,11 @@ package controllers;
 
 import components.LedNumber;
 import components.MineSweeper;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.beans.property.ReadOnlyIntegerWrapper;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -14,6 +19,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.util.Duration;
 
 import java.util.HashMap;
 
@@ -37,12 +43,19 @@ public class GameController {
     private ObservableList<Node> buttons;
     // 定义游戏运行需要的类变量
     private MineSweeper mineSweeper;
-    // 剩余标记数
-    private static int REST_FLAG = 0;
+    // 计时器
+    private Timeline timeline;
+    // 可监听属性
+    private ReadOnlyIntegerWrapper rest, clicked;
+    // 展示剩余可用标记和游戏用时的led数字
+    private LedNumber[] ledMark = new LedNumber[3];
+    private LedNumber[] ledTime = new LedNumber[3];
 
     public void initialize() {
-        REST_FLAG = GAME.bomb;
+        // 生成新游戏的用到的数据
         mineSweeper = new MineSweeper(GAME.width, GAME.height, GAME.bomb, new int[GAME.height][GAME.width]);
+        // 设置监听
+        addListener();
         // 绘制界面
         paintBorders();
         // 填充网格布局
@@ -50,20 +63,63 @@ public class GameController {
     }
 
     /**
+     * 为变量设置对应监听属性
+     */
+    private void addListener() {
+        REST_FLAG = GAME.bomb;
+        // 创建具有可观察特性的整数变量
+        rest = new ReadOnlyIntegerWrapper(REST_FLAG);
+        // 添加监听器, 在变量值变化时执行相应的操作, 下同
+        ChangeListener<? super Number> restListener = (observable, oldValue, newValue) -> {
+            // 在变量值变化时执行相应的操作
+            ledMark[0].switchSkin(REST_FLAG / 100);
+            ledMark[1].switchSkin(REST_FLAG % 100 / 10);
+            ledMark[2].switchSkin(REST_FLAG % 10);
+        };
+        // 将监听器绑定到rest属性
+        rest.addListener(restListener);
+
+        clicked = new ReadOnlyIntegerWrapper(CLICKED);
+        ChangeListener<? super Number> clickListener = (observable, oldValue, newValue) -> {
+            // 已经被点击, 开始计时
+            timeline = new Timeline(
+                    new KeyFrame(Duration.millis(995), event -> {
+                        TIMER += 1;
+                        ledTime[0].switchSkin(TIMER / 100);
+                        ledTime[1].switchSkin(TIMER % 100 / 10);
+                        ledTime[2].switchSkin(TIMER % 10);
+                        if(TIMER >= OVERTIME) {
+                            STATE = LOSS;
+                        }
+                        if(STATE != UNSURE) {
+                            String path = WIN_IMG;
+                            stopTimer();
+                            if(STATE == LOSS) {
+                                path = LOSS_IMG;
+                            }
+                            reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
+                        }
+                    })
+            );
+            timeline.setCycleCount(Animation.INDEFINITE);
+            timeline.play();
+        };
+        clicked.addListener(clickListener);
+    }
+
+    /**
      * 向每个网格布局中填充内容
      */
     private void addToGrid() {
         // 地雷计数网格
-        LedNumber[] ledMark = new LedNumber[3];
         ledMark[0] = new LedNumber(REST_FLAG / 100);
         ledMark[1] = new LedNumber(REST_FLAG % 100 / 10);
         ledMark[2] = new LedNumber(REST_FLAG % 10);
-        for(int i = 0; i < 3; ++i) {
+        for (int i = 0; i < 3; ++i) {
             mark.add(ledMark[i], i, 0);
         }
         // 时间计数网格
-        LedNumber[] ledTime = new LedNumber[3];
-        for(int i = 0; i < 3; ++i) {
+        for (int i = 0; i < 3; ++i) {
             ledTime[i] = new LedNumber(0);
             time.add(ledTime[i], i, 0);
         }
@@ -78,7 +134,7 @@ public class GameController {
                 button.setBorder(new Border(new BorderStroke(Color.web("#737373"), BorderStrokeStyle.SOLID,
                         new CornerRadii(4), new BorderWidths(1))));
                 button.setPadding(new Insets(0));
-
+                // 设置按钮大小和点击事件
                 button.setPrefSize(GAME.buttonSize, GAME.buttonSize);
                 button.setOnMouseClicked(event -> {
                     handleEvent(event);
@@ -92,9 +148,14 @@ public class GameController {
     /**
      * 按钮点击事件
      *
-     * @param event
+     * @param event 点击事件
      */
     private void handleEvent(MouseEvent event) {
+        // 判断游戏是否开局
+        if (CLICKED == NO) {
+            CLICKED = YES;
+            clicked.set(CLICKED);
+        }
         // 获取按钮所在行列
         int row = GridPane.getRowIndex((Node) event.getSource());
         int column = GridPane.getColumnIndex((Node) event.getSource());
@@ -104,7 +165,7 @@ public class GameController {
             return;
         }
         // 定义图片路径
-        String buttonPath = null, resetPath = SMILE_IMG;
+        String buttonPath = null;
         // 获取按钮
         Button button = (Button) buttons.get(row * GAME.width + column);
         // 根据左右键设置不同响应逻辑
@@ -131,45 +192,43 @@ public class GameController {
             if (map[row][column] <= BOUND && map[row][column] >= FLAG) {
                 // 如果被标记, 则先清空标记
                 map[row][column] -= map[row][column] >= GUESS ? GUESS : FLAG;
-                return;
-            }
+                REST_FLAG += 1;
+            } else {
+                mineSweeper.clickCell(row, column);
 
-            mineSweeper.clickCell(row, column);
-
-            if (STATE == UNSURE) {
-                // 统计非雷格子已点开数目
-                int count = 0;
-                for (int i = 0; i < GAME.height; ++i) {
-                    for (int j = 0; j < GAME.height; ++j) {
-                        button = (Button) buttons.get(i * GAME.width + j);
-                        if (map[i][j] > BOUND) {
-                            count += 1;
-                            int value = map[i][j] - 100;
-                            if (value != BLANK) {
-                                // 消除空白填充
-                                button.setPadding(new Insets(0.0));
-                                // 创建粗体字体
-                                Font boldFont = Font.font("Arial", FontWeight.BOLD, GAME.numSize);
-                                button.setFont(boldFont);
-                                button.setTextFill(NUMS[value - 1]);
-                                button.setText(value + "");
+                if (STATE == UNSURE) {
+                    // 统计非雷格子已点开数目
+                    int count = 0;
+                    for (int i = 0; i < GAME.height; ++i) {
+                        for (int j = 0; j < GAME.height; ++j) {
+                            button = (Button) buttons.get(i * GAME.width + j);
+                            if (map[i][j] > BOUND) {
+                                count += 1;
+                                int value = map[i][j] - 100;
+                                if (value != BLANK) {
+                                    // 消除空白填充
+                                    button.setPadding(new Insets(0.0));
+                                    // 创建粗体字体
+                                    Font boldFont = Font.font("Arial", FontWeight.BOLD, GAME.numSize);
+                                    button.setFont(boldFont);
+                                    button.setTextFill(NUMS[value - 1]);
+                                    button.setText(value + "");
+                                }
+                                button.setStyle("-fx-border-color: #737373");
+                                button.setDisable(true);
                             }
-                            button.setStyle("-fx-border-color: #7A7A7A");
-                            button.setDisable(true);
                         }
                     }
+                    // 判断全部非雷格子是否全部点开
+                    if (count + GAME.bomb == GAME.width * GAME.height) {
+                        STATE = WIN;
+                    }
+                } else if (STATE == LOSS) {
+                    buttonPath = UNEXPLODED_IMG;
                 }
-                // 判断全部非雷格子是否全部点开
-                if (count + GAME.bomb == GAME.width * GAME.height) {
-                    STATE = WIN;
-                    resetPath = WIN_IMG;
-                }
-            } else if (STATE == LOSS) {
-                buttonPath = UNEXPLODED_IMG;
-                resetPath = LOSS_IMG;
             }
-            reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + resetPath + ")");
         }
+        rest.set(REST_FLAG);
         button.setStyle("-fx-background-size: contain; -fx-background-image: url(" + buttonPath + ")");
     }
 
@@ -225,9 +284,21 @@ public class GameController {
      */
     public void onResetClick() {
         if (STATE != UNSURE) {
+            // 重置状态参数
+            CLICKED = NO;
             STATE = UNSURE;
+            REST_FLAG = GAME.bomb;
+            TIMER = 0;
             reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + SMILE_IMG + ")");
         }
         initialize();
+//        mineSweeper = new MineSweeper(GAME.width, GAME.height, GAME.bomb, new int[GAME.height][GAME.width]);
+    }
+
+    /**
+     * 终止计时
+     */
+    private void stopTimer() {
+        timeline.stop();
     }
 }

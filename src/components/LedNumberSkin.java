@@ -62,11 +62,12 @@ public class LedNumberSkin extends SkinBase<LedNumber> {
         polygons[5].getPoints().addAll(getPoints(0, 1, lenLong + 3));
         polygons[6].getPoints().addAll(getPoints(4, 2, lenLong + 2));
 
+        // 根据edges数组判断每条边是否要用高亮色
         for (int i = 0; i < 7; ++i) {
             if(edges[index][i]) {
-                polygons[i].setFill(Color.RED);
+                polygons[i].setFill(Color.web("#FF0000"));
             } else {
-                polygons[i].setFill(Color.MAROON);
+                polygons[i].setFill(Color.web("#680404"));
             }
             pane.getChildren().add(polygons[i]);
         }

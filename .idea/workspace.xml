@@ -4,13 +4,9 @@
     <list default="true" id="99c8bb78-eca7-4816-8c38-f91fcf5d8e03" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FileIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FileIO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/GameEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GameEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LedNumberSkin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LedNumberSkin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fxmls/game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxmls/game.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ranks/easy.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ranks/hard.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ranks/medium.txt" beforeDir="false" />
     </list>
     <disabled>
       <disabled_changelists>
@@ -168,7 +164,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/fxmls" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="editor.reader.mode" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -222,17 +218,6 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -322,7 +307,8 @@
       <workItem from="1687331724726" duration="15701000" />
       <workItem from="1687400772052" duration="5253000" />
       <workItem from="1687417460701" duration="12554000" />
-      <workItem from="1687483717145" duration="6044000" />
+      <workItem from="1687483717145" duration="6139000" />
+      <workItem from="1687512777073" duration="6793000" />
     </task>
     <servers />
   </component>

@@ -15,6 +15,18 @@ public class Constant {
     // 游戏难度
     public static GameEnum GAME = GameEnum.EASY;
 
+    // 游戏是否开局, 即格子是否被点击过 [1:是, 0:否]
+    public static int YES = 1;
+    public static int NO = 0;
+    public static int CLICKED = NO;
+
+    // 剩余标记数
+    public static int REST_FLAG = 0;
+
+    // 已花费时间
+    public static int TIMER = 995;
+    public static int OVERTIME = 999;
+
     // 游戏状态相关 [1:获胜, 0:未知, -1:失败]
     public static byte WIN = 1;
     public static byte UNSURE = 0;
