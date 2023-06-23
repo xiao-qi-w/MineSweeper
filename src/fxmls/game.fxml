@@ -39,6 +39,10 @@
             </font>
         </Label>
         <GridPane fx:id="grid"/>
-        <Button fx:id="reset" prefHeight="50.0" prefWidth="50.0" onAction="#onResetClick"/>
+        <GridPane fx:id="mark" prefWidth="70.0" prefHeight="50.0" AnchorPane.topAnchor="35.0"
+                  AnchorPane.leftAnchor="20.0" style="-fx-background-color: #000000"/>
+        <GridPane fx:id="time" prefWidth="70.0" prefHeight="50.0" AnchorPane.topAnchor="35.0"
+                  AnchorPane.rightAnchor="20.0" style="-fx-background-color: #000000"/>
+        <Button fx:id="reset" prefHeight="50.0" prefWidth="50.0" AnchorPane.topAnchor="35.0" onAction="#onResetClick"/>
     </children>
 </AnchorPane>

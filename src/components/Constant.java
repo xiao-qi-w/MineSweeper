@@ -64,8 +64,8 @@ public class Constant {
 
     // 排行榜文件相对路径前缀
     public static final String[] RECORD_PATHS = {
-            "../MineSweeper/src/ranks/easy.txt",
-            "../MineSweeper/src/ranks/medium.txt",
-            "../MineSweeper/src/ranks/hard.txt"
+            "src/ranks/easy.txt",
+            "src/ranks/medium.txt",
+            "src/ranks/hard.txt"
     };
 }

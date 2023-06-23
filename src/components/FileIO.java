@@ -22,7 +22,7 @@ public class FileIO {
 
     static {
         try {
-            File directory = new File("../MineSweeper/src/ranks");
+            File directory = new File("./src/ranks");
             if (!directory.exists() || !directory.isDirectory()) {
                 System.out.println("目录不存在, 将自动创建...");
                 directory.mkdirs();

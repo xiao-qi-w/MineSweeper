@@ -30,6 +30,8 @@ public enum GameEnum {
     }
 
     GameEnum() {
+        this.buttonSize = 35.0;
+        this.numSize = 20.0;
     }
 
     public HashMap<String, Double> genParamsMap() {
@@ -45,9 +47,6 @@ public enum GameEnum {
         double lenHorizontal = width * buttonSize;
         params.put("lenVertical", lenVertical);
         params.put("lenHorizontal", lenHorizontal);
-        // 计算实际窗口宽高
-        WINDOW_WIDTH += lenHorizontal + thickness * 2;
-        WINDOW_HEIGHT += lenVertical;
         return params;
     }
 }

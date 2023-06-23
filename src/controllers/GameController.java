@@ -1,5 +1,6 @@
 package controllers;
 
+import components.LedNumber;
 import components.MineSweeper;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,8 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -27,7 +28,7 @@ public class GameController {
     @FXML  // 底层布局
     private AnchorPane anchorPane;
     @FXML  // 网格布局
-    private GridPane grid;
+    private GridPane grid, mark, time;
     @FXML  // 笑脸按钮
     private Button reset;
     @FXML  // 边框标签
@@ -44,13 +45,40 @@ public class GameController {
         mineSweeper = new MineSweeper(GAME.width, GAME.height, GAME.bomb, new int[GAME.height][GAME.width]);
         // 绘制界面
         paintBorders();
-        // 向网格布局中填充按钮
+        // 填充网格布局
+        addToGrid();
+    }
+
+    /**
+     * 向每个网格布局中填充内容
+     */
+    private void addToGrid() {
+        // 地雷计数网格
+        LedNumber[] ledMark = new LedNumber[3];
+        ledMark[0] = new LedNumber(REST_FLAG / 100);
+        ledMark[1] = new LedNumber(REST_FLAG % 100 / 10);
+        ledMark[2] = new LedNumber(REST_FLAG % 10);
+        for(int i = 0; i < 3; ++i) {
+            mark.add(ledMark[i], i, 0);
+        }
+        // 时间计数网格
+        LedNumber[] ledTime = new LedNumber[3];
+        for(int i = 0; i < 3; ++i) {
+            ledTime[i] = new LedNumber(0);
+            time.add(ledTime[i], i, 0);
+        }
+        // 按钮网格
         if (buttons != null) {
             buttons.clear();
         }
         for (int i = 0; i < GAME.height; ++i) {
             for (int j = 0; j < GAME.width; ++j) {
                 Button button = new Button();
+                // 设置边界线的外观效果, 使按钮看起来更突出
+                button.setBorder(new Border(new BorderStroke(Color.web("#737373"), BorderStrokeStyle.SOLID,
+                        new CornerRadii(4), new BorderWidths(1))));
+                button.setPadding(new Insets(0));
+
                 button.setPrefSize(GAME.buttonSize, GAME.buttonSize);
                 button.setOnMouseClicked(event -> {
                     handleEvent(event);
@@ -61,45 +89,59 @@ public class GameController {
         buttons = grid.getChildren();
     }
 
-    // 处理点击事件
-    public void handleEvent(MouseEvent event) {
+    /**
+     * 按钮点击事件
+     *
+     * @param event
+     */
+    private void handleEvent(MouseEvent event) {
         // 获取按钮所在行列
         int row = GridPane.getRowIndex((Node) event.getSource());
         int column = GridPane.getColumnIndex((Node) event.getSource());
         int[][] map = mineSweeper.getMap();
-
+        // 只有在胜负未确定状态下可以更新网格按钮状态
+        if (STATE != UNSURE) {
+            return;
+        }
+        // 定义图片路径
+        String buttonPath = null, resetPath = SMILE_IMG;
+        // 获取按钮
+        Button button = (Button) buttons.get(row * GAME.width + column);
+        // 根据左右键设置不同响应逻辑
         if (event.getButton() == MouseButton.SECONDARY) {
-            // 右键单击, 获取按钮
-            Button button = (Button) buttons.get(row * GAME.width + column);
-            // 定义图片路径
-            String path = null;
-
+            // 右键对应行为
             if (map[row][column] >= GUESS) {
                 // 不设置图片, 还原雷的数目
                 map[row][column] -= GUESS;
                 REST_FLAG += 1;
             } else if (map[row][column] >= FLAG) {
                 // 如果已经被标记, 路径更换为问号图片, 表示不确定
-                path = GUESS_IMG;
+                buttonPath = GUESS_IMG;
                 map[row][column] = map[row][column] - FLAG + GUESS;
             } else {
                 // 未被标记过, 判断是否还有可用标记
-                if(REST_FLAG > 0) {
-                    path = FLAG_IMG;
+                if (REST_FLAG > 0) {
+                    buttonPath = FLAG_IMG;
                     map[row][column] += FLAG;
                     REST_FLAG -= 1;
                 }
             }
-            button.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
         } else {
-            // 左键单击
+            // 左键对应行为
+            if (map[row][column] <= BOUND && map[row][column] >= FLAG) {
+                // 如果被标记, 则先清空标记
+                map[row][column] -= map[row][column] >= GUESS ? GUESS : FLAG;
+                return;
+            }
+
             mineSweeper.clickCell(row, column);
+
             if (STATE == UNSURE) {
-                // count统计非雷格子已点开数目
+                // 统计非雷格子已点开数目
                 int count = 0;
                 for (int i = 0; i < GAME.height; ++i) {
                     for (int j = 0; j < GAME.height; ++j) {
-                        Button button = (Button) buttons.get(i * GAME.width + j);
+                        button = (Button) buttons.get(i * GAME.width + j);
                         if (map[i][j] > BOUND) {
                             count += 1;
                             int value = map[i][j] - 100;
@@ -112,7 +154,7 @@ public class GameController {
                                 button.setTextFill(NUMS[value - 1]);
                                 button.setText(value + "");
                             }
-                            button.setStyle("-fx-border-insets: 0.0; -fx-border-color: #7A7A7A");
+                            button.setStyle("-fx-border-color: #7A7A7A");
                             button.setDisable(true);
                         }
                     }
@@ -120,28 +162,31 @@ public class GameController {
                 // 判断全部非雷格子是否全部点开
                 if (count + GAME.bomb == GAME.width * GAME.height) {
                     STATE = WIN;
-                    reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + WIN_IMG + ")");
+                    resetPath = WIN_IMG;
                 }
             } else if (STATE == LOSS) {
-                reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + LOSS_IMG + ")");
+                buttonPath = UNEXPLODED_IMG;
+                resetPath = LOSS_IMG;
             }
+            reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + resetPath + ")");
         }
+        button.setStyle("-fx-background-size: contain; -fx-background-image: url(" + buttonPath + ")");
     }
 
-    public void onResetClick() {
-        if (STATE != UNSURE) {
-            STATE = UNSURE;
-            reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + SMILE_IMG + ")");
-        }
-        initialize();
-    }
-
-    public void paintBorders() {
+    /**
+     * 调整边框以及其他组件的位置和大小
+     */
+    private void paintBorders() {
         HashMap<String, Double> params = GAME.genParamsMap();
         double thickness = params.get("thickness");
         double offset = params.get("offset");
         double lenVertical = params.get("lenVertical");
         double lenHorizontal = params.get("lenHorizontal");
+
+        // 计算实际窗口宽高
+        WINDOW_WIDTH += lenHorizontal + thickness * 2;
+        WINDOW_HEIGHT += lenVertical;
+
         // 设置窗口大小
         anchorPane.setPrefSize(WINDOW_WIDTH, lenVertical);
 
@@ -152,7 +197,6 @@ public class GameController {
         // 设置重置按钮的位置
         reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + SMILE_IMG + ")");
         AnchorPane.setLeftAnchor(reset, thickness + (lenHorizontal - 50) / 2);
-        AnchorPane.setTopAnchor(reset, (offset - 50) / 2);
 
         // 设置边框标签的大小和位置
         labelTop.setPrefSize(lenHorizontal, thickness);
@@ -174,5 +218,16 @@ public class GameController {
         labelRight.setPrefSize(thickness, lenVertical);
         AnchorPane.setLeftAnchor(labelRight, lenHorizontal + thickness);
         AnchorPane.setTopAnchor(labelRight, 0.0);
+    }
+
+    /**
+     * 重置游戏进度
+     */
+    public void onResetClick() {
+        if (STATE != UNSURE) {
+            STATE = UNSURE;
+            reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + SMILE_IMG + ")");
+        }
+        initialize();
     }
 }
