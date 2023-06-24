@@ -21,36 +21,8 @@ public class MineSweeper {
     // 游戏地图
     private int[][] map;
 
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public int getBoom() {
-        return bomb;
-    }
-
-    public void setBoom(int bomb) {
-        this.bomb = bomb;
-    }
-
     public int[][] getMap() {
         return map;
-    }
-
-    public void setMap(int[][] map) {
-        this.map = map;
     }
 
     public MineSweeper(int width, int height, int bomb, int[][] map) {
@@ -129,7 +101,9 @@ public class MineSweeper {
             for (int i = 0; i < 8; i += 1) {
                 int newX = x + positions[i][0];
                 int newY = y + positions[i][1];
-                if (newX > -1 && newX < height && newY > -1 && newY < width && map[newX][newY] != BOOM) {
+                if (newX > -1 && newX < height && newY > -1 && newY < width
+                        && map[newX][newY] != BOOM && map[newX][newY] < FLAG) {
+                    // 递归展开非雷和未标记区域
                     clickCell(newX, newY);
                 }
             }

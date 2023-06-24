@@ -57,7 +57,7 @@ public class GameController {
         // 设置监听
         addListener();
         // 绘制界面
-        paintBorders();
+        adjustControls();
         // 填充网格布局
         addToGrid();
     }
@@ -79,26 +79,31 @@ public class GameController {
         // 将监听器绑定到rest属性
         rest.addListener(restListener);
 
+        CLICKED = NO;
+        TIMER = 0;
+        if(timeline != null) {
+            timeline.stop();
+        }
         clicked = new ReadOnlyIntegerWrapper(CLICKED);
         ChangeListener<? super Number> clickListener = (observable, oldValue, newValue) -> {
             // 已经被点击, 开始计时
             timeline = new Timeline(
                     new KeyFrame(Duration.millis(995), event -> {
                         TIMER += 1;
-                        ledTime[0].switchSkin(TIMER / 100);
-                        ledTime[1].switchSkin(TIMER % 100 / 10);
-                        ledTime[2].switchSkin(TIMER % 10);
-                        if(TIMER >= OVERTIME) {
+                        if (TIMER >= OVERTIME) {
                             STATE = LOSS;
                         }
-                        if(STATE != UNSURE) {
+                        if (STATE != UNSURE) {
                             String path = WIN_IMG;
-                            stopTimer();
-                            if(STATE == LOSS) {
+                            timeline.stop();
+                            if (STATE == LOSS) {
                                 path = LOSS_IMG;
                             }
                             reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
                         }
+                        ledTime[0].switchSkin(TIMER / 100);
+                        ledTime[1].switchSkin(TIMER % 100 / 10);
+                        ledTime[2].switchSkin(TIMER % 10);
                     })
             );
             timeline.setCycleCount(Animation.INDEFINITE);
@@ -235,7 +240,7 @@ public class GameController {
     /**
      * 调整边框以及其他组件的位置和大小
      */
-    private void paintBorders() {
+    private void adjustControls() {
         HashMap<String, Double> params = GAME.genParamsMap();
         double thickness = params.get("thickness");
         double offset = params.get("offset");
@@ -283,22 +288,6 @@ public class GameController {
      * 重置游戏进度
      */
     public void onResetClick() {
-        if (STATE != UNSURE) {
-            // 重置状态参数
-            CLICKED = NO;
-            STATE = UNSURE;
-            REST_FLAG = GAME.bomb;
-            TIMER = 0;
-            reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + SMILE_IMG + ")");
-        }
         initialize();
-//        mineSweeper = new MineSweeper(GAME.width, GAME.height, GAME.bomb, new int[GAME.height][GAME.width]);
-    }
-
-    /**
-     * 终止计时
-     */
-    private void stopTimer() {
-        timeline.stop();
     }
 }

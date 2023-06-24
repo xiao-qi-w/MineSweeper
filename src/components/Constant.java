@@ -24,7 +24,7 @@ public class Constant {
     public static int REST_FLAG = 0;
 
     // 已花费时间
-    public static int TIMER = 995;
+    public static int TIMER = 0;
     public static int OVERTIME = 999;
 
     // 游戏状态相关 [1:获胜, 0:未知, -1:失败]

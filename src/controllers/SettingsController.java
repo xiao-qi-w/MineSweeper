@@ -38,6 +38,10 @@ public class SettingsController {
     private ToggleGroup degree, sound;
 
     public void initialize() {
+        // 文本框默认不可编辑
+        numWidth.setEditable(false);
+        numHeight.setEditable(false);
+        numBoom.setEditable(false);
         // 首先尝试使用已保存设置
         switch (GAME) {
             case EASY:
@@ -51,6 +55,9 @@ public class SettingsController {
                 break;
             default: {
                 custom.setSelected(true);
+                numWidth.setEditable(true);
+                numHeight.setEditable(true);
+                numBoom.setEditable(true);
                 numWidth.setText(GAME.width + "");
                 numHeight.setText(GAME.height + "");
                 numBoom.setText(GAME.bomb + "");
@@ -112,9 +119,9 @@ public class SettingsController {
             try {
                 // 如果是自定义难度, 保存输入的值
                 if (GAME == GameEnum.CUSTOM) {
-                    GAME.width = Integer.parseInt(numWidth.getText());
-                    GAME.height = Integer.parseInt(numHeight.getText());
-                    GAME.bomb = Integer.parseInt(numBoom.getText());
+                    GAME.setWidth(Integer.parseInt(numWidth.getText()));
+                    GAME.setHeight(Integer.parseInt(numHeight.getText()));
+                    GAME.setBomb(Integer.parseInt(numBoom.getText()));
                 }
                 // 设置用于动画效果的图片
                 loading.setImage(new Image(LOAD_IMG));

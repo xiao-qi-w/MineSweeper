@@ -34,6 +34,38 @@ public enum GameEnum {
         this.numSize = 20.0;
     }
 
+    // 宽和高限制在简单和困难之间
+    public void setWidth(int width) {
+        if(width < EASY.width) {
+            this.width = EASY.width;
+        } else if(width > HARD.width) {
+            this.width = HARD.width;
+        } else {
+            this.width = width;
+        }
+    }
+
+    public void setHeight(int height) {
+        if(height < EASY.height) {
+            this.height = EASY.height;
+        } else if(height > HARD.height) {
+            this.height = HARD.height;
+        } else {
+            this.height = height;
+        }
+    }
+
+    // 地雷数介于格子数之间
+    public void setBomb(int bomb) {
+        if(bomb < 0) {
+            this.bomb = 0;
+        } else if(bomb > width * height) {
+            this.bomb = width * height;
+        } else {
+            this.bomb = bomb;
+        }
+    }
+
     public HashMap<String, Double> genParamsMap() {
         HashMap<String, Double> params = new HashMap();
         // 标签宽度, 固定值10
