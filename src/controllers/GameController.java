@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
@@ -302,16 +303,30 @@ public class GameController {
      * 用时少于排行版某一项, 输入玩家名称
      */
     private void showDialog() {
+        // 创建带输入的对话框
         TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("少侠请留名");
+        dialog.setTitle("新纪录!");
         dialog.setHeaderText("请输入您的昵称:");
-        dialog.setContentText("新玩家");
+        dialog.getDialogPane().setGraphic(null);
 
+        dialog.setOnCloseRequest(event -> {
+            // 处理取消或关闭事件时输入为空的情况
+            String userInput = dialog.getEditor().getText();
+            if (userInput == null || userInput.trim().equals("")) {
+                event.consume(); // 阻止关闭操作
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("您必须输入些什么");
+                alert.showAndWait();
+            }
+        });
+        // 输入事件
         Optional<String> result = dialog.showAndWait();
-
         result.ifPresent(name -> {
-            System.out.println("Your name: " + name);
+            // 获取输入, 保存到文件
             String filePath = null;
+            if(name == null || name.equals("")) {
+                name = "player";
+            }
             String[] record = new String[]{name, TIMER + ""};
             switch (GAME) {
                 case HARD:

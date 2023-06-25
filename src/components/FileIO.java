@@ -16,30 +16,31 @@ import static components.Constant.RECORD_PATHS;
  */
 public class FileIO {
 
-    // 存放数据的列表
-    private static ObservableList<String[]> list = FXCollections.observableArrayList();
-    // 定义比较器
-    private static Comparator<String[]> comparator = (o1, o2) -> o1[1].compareTo(o2[1]);
-
     static {
+        // 每次调用此类都先判断目录和文件是否存在
         try {
-            File directory = new File("./src/ranks");
+            File directory = new File(PREFIX + "/src/ranks");
             if (!directory.exists() || !directory.isDirectory()) {
                 System.out.println("目录不存在, 将自动创建...");
                 directory.mkdirs();
             }
             for (String path : RECORD_PATHS) {
+                path = PREFIX + path;
                 File file = new File(path);
                 if (!file.exists()) {
                     System.out.println("文件不存在, 将自动创建...");
-                    file.createNewFile();
-                    // 写入内置数据
-                    BufferedWriter writer = new BufferedWriter(new FileWriter(path));
-                    for (int i = 0; i < 10; ++i) {
-                        writer.write("未命名 999\n");
+                    if(file.createNewFile()) {
+                        System.out.println("创建成功");
+                        // 写入内置数据
+                        BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+                        for (int i = 0; i < 10; ++i) {
+                            writer.write("未命名 999\n");
+                        }
+                        writer.flush();
+                        writer.close();
+                    } else {
+                        System.out.println("创建失败, 请查找原因");
                     }
-                    writer.flush();
-                    writer.close();
                 }
             }
         } catch (Exception e) {
@@ -55,19 +56,17 @@ public class FileIO {
      * @return 排行数据集合
      */
     public static ObservableList<String[]> readFromFile(String filePath) {
+        ObservableList<String[]> list = FXCollections.observableArrayList();
         try {
+            // 拼接路径, 创建读取对象
             filePath = PREFIX + filePath;
-            System.out.println(filePath);
-            // 清空列表
-            if (list != null && list.size() > 0) {
-                list.clear();
-            }
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            // 读取数据
             String line = null;
             while ((line = reader.readLine()) != null) {
                 list.add(line.split(" "));
             }
-            FXCollections.sort(list, comparator);
+            reader.close();
         } catch (Exception e) {
             System.out.println("Error on [Class:FileIO, Method:readFromFile]=>");
             e.printStackTrace();
@@ -83,18 +82,20 @@ public class FileIO {
      */
     public static void writeToFile(String filePath, String[] record) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
-            list = readFromFile(filePath);
+            ObservableList<String[]> list = readFromFile(filePath);
             // 将记录插入到合适位置
             for (int i = 0; i < 10; ++i) {
                 if (record[1].compareTo(list.get(i)[1]) <= 1) {
                     list.add(i, record);
+                    break;
                 }
             }
-            System.out.println(list);
+            // 移除多余记录
             list.remove(10);
+            // 重新写入数据
+            BufferedWriter writer = new BufferedWriter(new FileWriter(PREFIX + filePath));
             for (String[] item : list) {
-                writer.write(item[0] + " " + item[1]);
+                writer.write(item[0] + " " + item[1] + "\n");
             }
             writer.flush();
             writer.close();
