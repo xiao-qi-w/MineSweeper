@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.Button?>
-<AnchorPane fx:id="anchorPane"
-            prefHeight="500.0" prefWidth="400.0"
-            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.AboutController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
+            prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <GridPane fx:id="grid" prefHeight="60" prefWidth="250" AnchorPane.topAnchor="50">
-
-        </GridPane>
-        <Button fx:id="btn" text="add" onAction="#onAddClick">
-
-        </Button>
-
+        <Label alignment="CENTER" layoutX="150.0" layoutY="21.0" prefHeight="50.0" prefWidth="200.0" text="友情链接"
+               AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="25.0">
+            <font>
+                <Font name="System Bold" size="24.0"/>
+            </font>
+        </Label>
+        <TextArea prefHeight="350.0" prefWidth="350.0"
+                  text="完整源码:&#10;https://github.com/xiao-qi-w/MineSweeper&#10;&#10;开发思路:&#10;视频演示:&#10;不熟悉GitHub可以使用百度网盘:&#10;"
+                  AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="101.0" editable="false"/>
     </children>
-
-
 </AnchorPane>

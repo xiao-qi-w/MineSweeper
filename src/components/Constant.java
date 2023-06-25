@@ -74,10 +74,13 @@ public class Constant {
     public static final String GUESS_IMG = "/images/guess.png";
     public static final String ICON_IMG = "/images/icon.png";
 
+    // 完整路径前缀
+    public static String PREFIX = System.getProperty("user.dir");
+
     // 排行榜文件相对路径前缀
     public static final String[] RECORD_PATHS = {
-            "src/ranks/easy.txt",
-            "src/ranks/medium.txt",
-            "src/ranks/hard.txt"
+            "\\src\\ranks\\easy.txt",
+            "\\src\\ranks\\medium.txt",
+            "\\src\\ranks\\hard.txt"
     };
 }

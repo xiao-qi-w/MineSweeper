@@ -1,10 +1,13 @@
 package controllers;
 
+import components.FileIO;
+import components.GameEnum;
 import components.LedNumber;
 import components.MineSweeper;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyIntegerWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
@@ -13,6 +16,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -22,6 +26,7 @@ import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 import static components.Constant.*;
 
@@ -81,7 +86,7 @@ public class GameController {
 
         CLICKED = NO;
         TIMER = 0;
-        if(timeline != null) {
+        if (timeline != null) {
             timeline.stop();
         }
         clicked = new ReadOnlyIntegerWrapper(CLICKED);
@@ -98,6 +103,8 @@ public class GameController {
                             timeline.stop();
                             if (STATE == LOSS) {
                                 path = LOSS_IMG;
+                            } else {
+                                Platform.runLater(() -> showDialog());
                             }
                             reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
                         }
@@ -289,5 +296,36 @@ public class GameController {
      */
     public void onResetClick() {
         initialize();
+    }
+
+    /**
+     * 用时少于排行版某一项, 输入玩家名称
+     */
+    private void showDialog() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("少侠请留名");
+        dialog.setHeaderText("请输入您的昵称:");
+        dialog.setContentText("新玩家");
+
+        Optional<String> result = dialog.showAndWait();
+
+        result.ifPresent(name -> {
+            System.out.println("Your name: " + name);
+            String filePath = null;
+            String[] record = new String[]{name, TIMER + ""};
+            switch (GAME) {
+                case HARD:
+                    filePath = RECORD_PATHS[2];
+                    break;
+                case MEDIUM:
+                    filePath = RECORD_PATHS[1];
+                    break;
+                case EASY:
+                    filePath = RECORD_PATHS[0];
+                default:
+                    break;
+            }
+            FileIO.writeToFile(filePath, record);
+        });
     }
 }
