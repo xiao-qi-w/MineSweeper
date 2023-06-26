@@ -74,7 +74,7 @@
         <ImageView fx:id="loading" fitHeight="40.0" fitWidth="40.0" preserveRatio="true" AnchorPane.topAnchor="430.0"/>
         <Label layoutX="170.0" layoutY="308.0" prefHeight="20.0" prefWidth="250.0" text="自定义难度可修改宽高和地雷个数" textFill="RED"
                AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="320.0"/>
-        <Label layoutX="45.0" layoutY="362.0" prefHeight="20.0" prefWidth="250.0" text="宽高范围会自动限制在简单和困难之间"
+        <Label layoutX="45.0" layoutY="362.0" prefHeight="20.0" prefWidth="250.0" text="范围会自动限制在简单和困难之间"
                textFill="RED" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="340.0"/>
         <Label layoutX="60.0" layoutY="382.0" prefHeight="20.0" prefWidth="250.0" text="地雷个数不会超过格子数" textFill="RED"
                AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="360.0"/>
