@@ -26,8 +26,6 @@ public class SettingsController {
     private AnchorPane anchorPane;
     @FXML  // 单选按钮, 难度
     private RadioButton easy, medium, hard, custom;
-    @FXML  // 单选按钮, 声音
-    private RadioButton on, off;
     @FXML  // 文本框组, 自定义游戏数据
     private TextField numWidth, numHeight, numBoom;
     @FXML // 保存按钮
@@ -35,7 +33,7 @@ public class SettingsController {
     @FXML // 辅助效果图
     private ImageView loading;
     // 单选按钮组
-    private ToggleGroup degree, sound;
+    private ToggleGroup degree;
 
     public void initialize() {
         // 文本框默认不可编辑
@@ -63,24 +61,13 @@ public class SettingsController {
                 numBoom.setText(GAME.bomb + "");
             }
         }
-        if (SOUND) {
-            on.setSelected(true);
-        } else {
-            off.setSelected(true);
-        }
 
         // 单选按钮分组
         degree = new ToggleGroup();
-        sound = new ToggleGroup();
-
         easy.setToggleGroup(degree);
         medium.setToggleGroup(degree);
         hard.setToggleGroup(degree);
         custom.setToggleGroup(degree);
-
-        on.setToggleGroup(sound);
-        off.setToggleGroup(sound);
-
         // 难度按钮选中事件
         degree.selectedToggleProperty().addListener(((observable, oldValue, newValue) -> {
             String id = ((RadioButton) newValue).getId();
@@ -106,12 +93,6 @@ public class SettingsController {
                     GAME = GameEnum.HARD;
                 }
             }
-        }));
-
-        // 声音按钮选中事件
-        sound.selectedToggleProperty().addListener(((observable, oldValue, newValue) -> {
-            String id = ((RadioButton) newValue).getId();
-            SOUND = "on".equals(id);
         }));
 
         // 保存按钮点击事件

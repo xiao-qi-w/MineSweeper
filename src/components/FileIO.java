@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.*;
-import java.util.Comparator;
 
 import static components.Constant.PREFIX;
 import static components.Constant.RECORD_PATHS;
@@ -29,7 +28,7 @@ public class FileIO {
                 File file = new File(path);
                 if (!file.exists()) {
                     System.out.println("文件不存在, 将自动创建...");
-                    if(file.createNewFile()) {
+                    if (file.createNewFile()) {
                         System.out.println("创建成功");
                         // 写入内置数据
                         BufferedWriter writer = new BufferedWriter(new FileWriter(path));

@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99c8bb78-eca7-4816-8c38-f91fcf5d8e03" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Constant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/FileIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FileIO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MineSweeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MineSweeper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ranks/easy.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ranks/hard.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ranks/medium.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fxmls/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxmls/settings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ranks/easy.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ranks/easy.txt" afterDir="false" />
     </list>
     <disabled>
       <disabled_changelists>
@@ -162,7 +165,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/fxmls" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="editor.reader.mode" />
@@ -172,8 +175,8 @@
       <recent name="utils" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\JetBrains\idea\IdeaProjects\MineSweeper\src\images" />
       <recent name="E:\JetBrains\idea\IdeaProjects\MineSweeper\src\fxmls" />
+      <recent name="E:\JetBrains\idea\IdeaProjects\MineSweeper\src\images" />
       <recent name="E:\JetBrains\idea\IdeaProjects\MineSweep\src" />
     </key>
   </component>
@@ -223,15 +226,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -325,7 +326,9 @@
       <workItem from="1687512777073" duration="7047000" />
       <workItem from="1687573435774" duration="4859000" />
       <workItem from="1687659196071" duration="8188000" />
-      <workItem from="1687686440629" duration="5580000" />
+      <workItem from="1687686440629" duration="5673000" />
+      <workItem from="1687753887167" duration="23000" />
+      <workItem from="1687764830530" duration="11666000" />
     </task>
     <servers />
   </component>
@@ -393,14 +396,9 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/controllers/SettingsController.java</url>
-          <line>126</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/components/FileIO.java</url>
-          <line>86</line>
-          <option name="timeStamp" value="14" />
+          <url>file://$PROJECT_DIR$/src/controllers/GameController.java</url>
+          <line>170</line>
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

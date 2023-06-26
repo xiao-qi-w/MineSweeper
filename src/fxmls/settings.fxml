@@ -4,82 +4,79 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane"
-        maxHeight="-Infinity" maxWidth="-Infinity"
-        minHeight="-Infinity" minWidth="-Infinity"
-        prefHeight="500.0" prefWidth="400.0"
-        xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="controllers.SettingsController">
-   <children>
-      <RadioButton fx:id="easy" layoutX="142.0" layoutY="133.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="简单" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="100.0">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="medium" layoutX="207.0" layoutY="163.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="中等" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="100.0">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="hard" layoutX="281.0" layoutY="250.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="困难" AnchorPane.leftAnchor="285.0" AnchorPane.topAnchor="100.0">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </RadioButton>
-      <Label layoutX="92.0" layoutY="51.0" prefHeight="50.0" prefWidth="200.0" text="难度设置：" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="30.0">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
-      <RadioButton fx:id="on" layoutX="85.0" layoutY="390.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="开" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="370.0">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="off" layoutX="250.0" layoutY="390.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="关" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="370.0">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </RadioButton>
-      <Label layoutX="100.0" layoutY="334.0" prefHeight="50.0" prefWidth="200.0" text="声音设置：" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="310.0">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
-      <RadioButton fx:id="custom" layoutX="55.0" layoutY="180.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="自定义" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="150.0">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </RadioButton>
-      <TextField fx:id="numWidth" layoutX="123.0" layoutY="228.0" prefHeight="30.0" prefWidth="80.0" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="200.0" />
-      <Label alignment="CENTER" layoutX="55.0" layoutY="235.0" prefHeight="30.0" prefWidth="75.0" text="宽(格子)" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="200.0">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="55.0" layoutY="284.0" prefHeight="30.0" prefWidth="75.0" text="地雷(个)" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="250.0">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="205.0" layoutY="230.0" prefHeight="30.0" prefWidth="75.0" text="高(格子)" AnchorPane.leftAnchor="195.0" AnchorPane.topAnchor="200.0">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <TextField fx:id="numHeight" layoutX="271.0" layoutY="228.0" prefHeight="30.0" prefWidth="80.0" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="200.0" />
-      <TextField fx:id="numBoom" layoutX="145.0" layoutY="282.0" prefHeight="30.0" prefWidth="80.0" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="250.0" />
-      <Button fx:id="save" layoutX="131.0" layoutY="424.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="保 存" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="425.0">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
-      <ImageView fx:id="loading" fitHeight="40.0" fitWidth="40.0" layoutX="75.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="430.0" visible="false">
-      </ImageView>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
+            prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <RadioButton fx:id="easy" layoutX="142.0" layoutY="133.0" mnemonicParsing="false" prefHeight="40.0"
+                     prefWidth="60.0" text="简单" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="105.0">
+            <font>
+                <Font name="System Bold" size="15.0"/>
+            </font>
+        </RadioButton>
+        <RadioButton fx:id="medium" layoutX="207.0" layoutY="163.0" mnemonicParsing="false" prefHeight="40.0"
+                     prefWidth="60.0" text="中等" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="105.0">
+            <font>
+                <Font name="System Bold" size="15.0"/>
+            </font>
+        </RadioButton>
+        <RadioButton fx:id="hard" layoutX="281.0" layoutY="250.0" mnemonicParsing="false" prefHeight="40.0"
+                     prefWidth="60.0" text="困难" AnchorPane.leftAnchor="285.0" AnchorPane.topAnchor="105.0">
+            <font>
+                <Font name="System Bold" size="15.0"/>
+            </font>
+        </RadioButton>
+        <Label layoutX="92.0" layoutY="51.0" prefHeight="50.0" prefWidth="200.0" text="难度设置："
+               AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="40.0">
+            <font>
+                <Font name="System Bold" size="24.0"/>
+            </font>
+        </Label>
+        <RadioButton fx:id="custom" layoutX="55.0" layoutY="180.0" mnemonicParsing="false" prefHeight="40.0"
+                     prefWidth="90.0" text="自定义" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="160.0">
+            <font>
+                <Font name="System Bold" size="15.0"/>
+            </font>
+        </RadioButton>
+        <TextField fx:id="numWidth" layoutX="123.0" layoutY="228.0" prefHeight="30.0" prefWidth="80.0"
+                   AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="210.0"/>
+        <Label alignment="CENTER" layoutX="55.0" layoutY="235.0" prefHeight="30.0" prefWidth="75.0" text="宽(格子)"
+               AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="210.0">
+            <font>
+                <Font name="System Bold" size="15.0"/>
+            </font>
+        </Label>
+        <Label alignment="CENTER" layoutX="55.0" layoutY="284.0" prefHeight="30.0" prefWidth="75.0" text="地雷(个)"
+               AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="260.0">
+            <font>
+                <Font name="System Bold" size="15.0"/>
+            </font>
+        </Label>
+        <Label alignment="CENTER" layoutX="205.0" layoutY="230.0" prefHeight="30.0" prefWidth="75.0" text="高(格子)"
+               AnchorPane.leftAnchor="195.0" AnchorPane.topAnchor="210.0">
+            <font>
+                <Font name="System Bold" size="15.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="numHeight" layoutX="271.0" layoutY="228.0" prefHeight="30.0" prefWidth="80.0"
+                   AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="210.0"/>
+        <TextField fx:id="numBoom" layoutX="145.0" layoutY="282.0" prefHeight="30.0" prefWidth="80.0"
+                   AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="260.0"/>
+        <Button fx:id="save" layoutX="131.0" layoutY="424.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0"
+                text="保 存" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="425.0">
+            <font>
+                <Font name="System Bold" size="20.0"/>
+            </font>
+        </Button>
+        <ImageView fx:id="loading" fitHeight="40.0" fitWidth="40.0" preserveRatio="true" AnchorPane.topAnchor="430.0"/>
+        <Label layoutX="170.0" layoutY="308.0" prefHeight="20.0" prefWidth="250.0" text="自定义难度可修改宽高和地雷个数" textFill="RED"
+               AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="320.0"/>
+        <Label layoutX="45.0" layoutY="362.0" prefHeight="20.0" prefWidth="250.0" text="宽高范围会自动限制在简单和困难之间"
+               textFill="RED" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="340.0"/>
+        <Label layoutX="60.0" layoutY="382.0" prefHeight="20.0" prefWidth="250.0" text="地雷个数不会超过格子数" textFill="RED"
+               AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="360.0"/>
+    </children>
 </AnchorPane>

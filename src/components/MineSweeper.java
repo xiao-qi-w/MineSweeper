@@ -26,6 +26,7 @@ public class MineSweeper {
     }
 
     public MineSweeper(int width, int height, int bomb, int[][] map) {
+        STATE = UNSURE;
         this.rand = new Random();
         this.width = width;
         this.height = height;

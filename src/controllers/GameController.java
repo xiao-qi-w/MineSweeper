@@ -105,7 +105,10 @@ public class GameController {
                             if (STATE == LOSS) {
                                 path = LOSS_IMG;
                             } else {
-                                Platform.runLater(() -> showDialog());
+                                // 自定义模式不计入成绩
+                                if(GAME != GameEnum.CUSTOM) {
+                                    Platform.runLater(() -> showDialog());
+                                }
                             }
                             reset.setStyle("-fx-background-size: contain; -fx-background-image: url(" + path + ")");
                         }
@@ -177,12 +180,12 @@ public class GameController {
         if (STATE != UNSURE) {
             return;
         }
-        // 定义图片路径
-        String buttonPath = null;
         // 获取按钮
         Button button = (Button) buttons.get(row * GAME.width + column);
         // 根据左右键设置不同响应逻辑
         if (event.getButton() == MouseButton.SECONDARY) {
+            // 定义图片路径
+            String imagePath = null;
             // 右键对应行为
             if (map[row][column] >= GUESS) {
                 // 不设置图片, 还原雷的数目
@@ -190,45 +193,47 @@ public class GameController {
                 REST_FLAG += 1;
             } else if (map[row][column] >= FLAG) {
                 // 如果已经被标记, 路径更换为问号图片, 表示不确定
-                buttonPath = GUESS_IMG;
+                imagePath = GUESS_IMG;
                 map[row][column] = map[row][column] - FLAG + GUESS;
             } else {
                 // 未被标记过, 判断是否还有可用标记
                 if (REST_FLAG > 0) {
-                    buttonPath = FLAG_IMG;
+                    imagePath = FLAG_IMG;
                     map[row][column] += FLAG;
                     REST_FLAG -= 1;
                 }
             }
+            button.setStyle("-fx-background-size: contain; -fx-background-image: url(" + imagePath + ")");
         } else {
             // 左键对应行为
             if (map[row][column] <= BOUND && map[row][column] >= FLAG) {
                 // 如果被标记, 则先清空标记
                 map[row][column] -= map[row][column] >= GUESS ? GUESS : FLAG;
                 REST_FLAG += 1;
+                button.setStyle("-fx-background-size: contain; -fx-background-image: url(" + null + ")");
             } else {
+                // 更新点击过的数据
                 mineSweeper.clickCell(row, column);
 
                 if (STATE == UNSURE) {
                     // 统计非雷格子已点开数目
                     int count = 0;
                     for (int i = 0; i < GAME.height; ++i) {
-                        for (int j = 0; j < GAME.height; ++j) {
-                            button = (Button) buttons.get(i * GAME.width + j);
+                        for (int j = 0; j < GAME.width; ++j) {
                             if (map[i][j] > BOUND) {
+                                Button btn = (Button) buttons.get(i * GAME.width + j);
                                 count += 1;
                                 int value = map[i][j] - 100;
                                 if (value != BLANK) {
                                     // 消除空白填充
-                                    button.setPadding(new Insets(0.0));
-                                    // 创建粗体字体
-                                    Font boldFont = Font.font("Arial", FontWeight.BOLD, GAME.numSize);
-                                    button.setFont(boldFont);
-                                    button.setTextFill(NUMS[value - 1]);
-                                    button.setText(value + "");
+                                    btn.setPadding(new Insets(0.0));
+                                    // 设置粗体和字体颜色
+                                    btn.setFont(Font.font("Arial", FontWeight.BOLD, GAME.numSize));
+                                    btn.setTextFill(NUMS[value - 1]);
+                                    btn.setText(value + "");
                                 }
-                                button.setStyle("-fx-border-color: #737373");
-                                button.setDisable(true);
+                                btn.setStyle("-fx-border-color: #737373; -fx-opacity: 1; -fx-background-color: #ffffff");
+                                btn.setDisable(true);
                             }
                         }
                     }
@@ -237,12 +242,11 @@ public class GameController {
                         STATE = WIN;
                     }
                 } else if (STATE == LOSS) {
-                    buttonPath = UNEXPLODED_IMG;
+                    button.setStyle("-fx-background-size: contain; -fx-background-image: url(" + UNEXPLODED_IMG + ")");
                 }
             }
         }
         rest.set(REST_FLAG);
-        button.setStyle("-fx-background-size: contain; -fx-background-image: url(" + buttonPath + ")");
     }
 
     /**
@@ -324,7 +328,7 @@ public class GameController {
         result.ifPresent(name -> {
             // 获取输入, 保存到文件
             String filePath = null;
-            if(name == null || name.equals("")) {
+            if (name == null || name.equals("")) {
                 name = "player";
             }
             String[] record = new String[]{name, TIMER + ""};

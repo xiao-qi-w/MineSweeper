@@ -33,9 +33,6 @@ public class Constant {
     public static byte LOSS = -1;
     public static byte STATE = UNSURE;
 
-    // 局内声音设置
-    public static boolean SOUND = true;
-
     // 数字常量 [0:空白格, 9:地雷]
     public static final byte BLANK = 0;
     public static final byte BOOM = 9;
@@ -77,7 +74,7 @@ public class Constant {
     // 完整路径前缀
     public static String PREFIX = System.getProperty("user.dir");
 
-    // 排行榜文件相对路径前缀
+    // 排行榜文件相对路径
     public static final String[] RECORD_PATHS = {
             "\\src\\ranks\\easy.txt",
             "\\src\\ranks\\medium.txt",
