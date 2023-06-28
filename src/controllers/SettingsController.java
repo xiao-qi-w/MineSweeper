@@ -11,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
 import static components.Constant.*;
@@ -22,8 +21,6 @@ import static components.Constant.*;
  * @time: 2023/6/15
  */
 public class SettingsController {
-    @FXML  // 底层布局
-    private AnchorPane anchorPane;
     @FXML  // 单选按钮, 难度
     private RadioButton easy, medium, hard, custom;
     @FXML  // 文本框组, 自定义游戏数据
@@ -42,16 +39,13 @@ public class SettingsController {
         numBoom.setEditable(false);
         // 首先尝试使用已保存设置
         switch (GAME) {
-            case EASY:
-                easy.setSelected(true);
-                break;
             case MEDIUM:
                 medium.setSelected(true);
                 break;
             case HARD:
                 hard.setSelected(true);
                 break;
-            default: {
+            case CUSTOM:
                 custom.setSelected(true);
                 numWidth.setEditable(true);
                 numHeight.setEditable(true);
@@ -59,7 +53,10 @@ public class SettingsController {
                 numWidth.setText(GAME.width + "");
                 numHeight.setText(GAME.height + "");
                 numBoom.setText(GAME.bomb + "");
-            }
+                break;
+            default:
+                easy.setSelected(true);
+                break;
         }
 
         // 单选按钮分组
@@ -100,26 +97,37 @@ public class SettingsController {
             try {
                 // 如果是自定义难度, 保存输入的值
                 if (GAME == GameEnum.CUSTOM) {
-                    GAME.setWidth(Integer.parseInt(numWidth.getText()));
-                    GAME.setHeight(Integer.parseInt(numHeight.getText()));
-                    GAME.setBomb(Integer.parseInt(numBoom.getText()));
+                    try {
+                        // 保存自定义输入
+                        GAME.setWidth(Integer.parseInt(numWidth.getText()));
+                        GAME.setHeight(Integer.parseInt(numHeight.getText()));
+                        GAME.setBomb(Integer.parseInt(numBoom.getText()));
+                    } catch (NumberFormatException e) {
+                        // 输入问题导致的转换失败, 按简单设置处理
+                        GAME.setWidth(9);
+                        GAME.setHeight(9);
+                        GAME.setBomb(10);
+                    }
                 }
                 // 设置用于动画效果的图片
                 loading.setImage(new Image(LOAD_IMG));
                 loading.setVisible(true);
                 // 点击保存时的动画效果,分两步, 1:旋转缓冲 2:图片淡出
                 RotateTransition transition1 = new RotateTransition(Duration.seconds(1), loading);
-                transition1.setByAngle(360); // 旋转角度
+                // 旋转角度
+                transition1.setByAngle(360);
                 transition1.setOnFinished(event1 -> {
                     loading.setImage(new Image(SAVE_IMG));
                 });
 
                 FadeTransition transition2 = new FadeTransition(Duration.seconds(1), loading);
-                transition2.setFromValue(1); // 起始不透明度
-                transition2.setToValue(0); // 目标不透明度
+                // 不透明度变化
+                transition2.setFromValue(1);
+                transition2.setToValue(0);
 
                 SequentialTransition sequence = new SequentialTransition(transition1, transition2);
-                sequence.play(); // 播放动画
+                // 播放动画
+                sequence.play();
             } catch (Exception e) {
                 System.out.println("Error on [Class:SettingsController, Method:initialize, Event: save]=>");
                 e.printStackTrace();

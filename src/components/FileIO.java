@@ -9,7 +9,7 @@ import static components.Constant.PREFIX;
 import static components.Constant.RECORD_PATHS;
 
 /**
- * @description: 处理文件读写
+ * @description: 文件读写处理
  * @author: 郭小柒w
  * @time: 2023/6/22
  */
@@ -20,25 +20,22 @@ public class FileIO {
         try {
             File directory = new File(PREFIX + "/src/ranks");
             if (!directory.exists() || !directory.isDirectory()) {
-                System.out.println("目录不存在, 将自动创建...");
+                // 目录不存在, 自动创建
                 directory.mkdirs();
             }
             for (String path : RECORD_PATHS) {
                 path = PREFIX + path;
                 File file = new File(path);
                 if (!file.exists()) {
-                    System.out.println("文件不存在, 将自动创建...");
+                    // 文件不存在, 自动创建
                     if (file.createNewFile()) {
-                        System.out.println("创建成功");
-                        // 写入内置数据
+                        // 创建成功, 写入内置数据
                         BufferedWriter writer = new BufferedWriter(new FileWriter(path));
                         for (int i = 0; i < 10; ++i) {
                             writer.write("未命名 999\n");
                         }
                         writer.flush();
                         writer.close();
-                    } else {
-                        System.out.println("创建失败, 请查找原因");
                     }
                 }
             }
@@ -81,6 +78,7 @@ public class FileIO {
      */
     public static void writeToFile(String filePath, String[] record) {
         try {
+            // 获取已有数据
             ObservableList<String[]> list = readFromFile(filePath);
             // 将记录插入到合适位置
             for (int i = 0; i < 10; ++i) {

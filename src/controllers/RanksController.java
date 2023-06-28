@@ -8,7 +8,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.AnchorPane;
 
 import static components.Constant.RECORD_PATHS;
 
@@ -18,13 +17,11 @@ import static components.Constant.RECORD_PATHS;
  * @time: 2023/6/22
  */
 public class RanksController {
-    @FXML  // 底层布局
-    private AnchorPane anchorPane;
     @FXML  // 单选按钮, 难度
     private RadioButton easy, medium, hard;
     @FXML  // 排行展示表
     private TableView<String[]> table;
-    @FXML
+    @FXML  // 表格列
     private TableColumn<String[], String> name, time;
     // 单选按钮组
     private ToggleGroup degree;

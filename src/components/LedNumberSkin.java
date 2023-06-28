@@ -17,7 +17,7 @@ public class LedNumberSkin extends SkinBase<LedNumber> {
     private Pane pane;
     // 自定义梯形, 用于组合表示数字
     private Polygon polygons[] = new Polygon[7];
-    // 控制每条边的颜色显示 [true:red, false:grey]
+    // 控制每条边的颜色显示 [true:亮红色, false:暗红色]
     private boolean edges[][] = {
             {true, true, true, true, true, true, false},
             {false, false, true, true, false, false, false},
@@ -62,7 +62,7 @@ public class LedNumberSkin extends SkinBase<LedNumber> {
         polygons[5].getPoints().addAll(getPoints(0, 1, lenLong + 3));
         polygons[6].getPoints().addAll(getPoints(4, 2, lenLong + 2));
 
-        // 根据edges数组判断每条边是否要用高亮色
+        // 根据edges数组判断每条边待设置的颜色
         for (int i = 0; i < 7; ++i) {
             if(edges[index][i]) {
                 polygons[i].setFill(Color.web("#FF0000"));

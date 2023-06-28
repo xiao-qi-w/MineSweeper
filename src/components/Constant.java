@@ -1,5 +1,6 @@
 package components;
 
+import javafx.animation.Timeline;
 import javafx.scene.paint.Color;
 
 /**
@@ -8,9 +9,9 @@ import javafx.scene.paint.Color;
  * @time: 2023/6/4
  */
 public class Constant {
-    // 游戏窗口实际宽高, 仅限在本电脑测出的偏差值,目前未找到较好的解决方法
-    public static double WINDOW_WIDTH = 6.0;
-    public static double WINDOW_HEIGHT = 35.0;
+    // 游戏进行时窗口实际宽高偏差值, 仅限本电脑, 目前未找到较好的解决方法
+    public static double WIDTH_OFFSET = 6.0;
+    public static double HEIGHT_OFFSET = 35.0;
 
     // 游戏难度
     public static GameEnum GAME = GameEnum.EASY;
@@ -20,12 +21,14 @@ public class Constant {
     public static int NO = 0;
     public static int CLICKED = NO;
 
-    // 剩余标记数
+    // 剩余可用标记数
     public static int REST_FLAG = 0;
 
-    // 已花费时间
+    // 时间计数和超时范围
     public static int TIMER = 0;
     public static int OVERTIME = 999;
+    // 计时器
+    public static Timeline TIMELINE = null;
 
     // 游戏状态相关 [1:获胜, 0:未知, -1:失败]
     public static byte WIN = 1;

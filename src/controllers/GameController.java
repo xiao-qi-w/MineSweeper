@@ -49,8 +49,6 @@ public class GameController {
     private ObservableList<Node> buttons;
     // 定义游戏运行需要的类变量
     private MineSweeper mineSweeper;
-    // 计时器
-    private Timeline timeline;
     // 可监听属性
     private ReadOnlyIntegerWrapper rest, clicked;
     // 展示剩余可用标记和游戏用时的led数字
@@ -58,6 +56,17 @@ public class GameController {
     private LedNumber[] ledTime = new LedNumber[3];
 
     public void initialize() {
+        // 重置剩余可用标记数
+        REST_FLAG = GAME.bomb;
+        // 重置点击状态
+        CLICKED = NO;
+        // 重置游戏状态
+        STATE = UNSURE;
+        // 重置计时器
+        if (TIMELINE != null) {
+            TIMELINE.stop();
+            TIMELINE = null;
+        }
         // 生成新游戏的用到的数据
         mineSweeper = new MineSweeper(GAME.width, GAME.height, GAME.bomb, new int[GAME.height][GAME.width]);
         // 设置监听
@@ -72,7 +81,6 @@ public class GameController {
      * 为变量设置对应监听属性
      */
     private void addListener() {
-        REST_FLAG = GAME.bomb;
         // 创建具有可观察特性的整数变量
         rest = new ReadOnlyIntegerWrapper(REST_FLAG);
         // 添加监听器, 在变量值变化时执行相应的操作, 下同
@@ -85,28 +93,26 @@ public class GameController {
         // 将监听器绑定到rest属性
         rest.addListener(restListener);
 
-        CLICKED = NO;
-        TIMER = 0;
-        if (timeline != null) {
-            timeline.stop();
-        }
         clicked = new ReadOnlyIntegerWrapper(CLICKED);
         ChangeListener<? super Number> clickListener = (observable, oldValue, newValue) -> {
             // 已经被点击, 开始计时
-            timeline = new Timeline(
-                    new KeyFrame(Duration.millis(995), event -> {
+            TIMER = 0;
+            TIMELINE = new Timeline(
+                    new KeyFrame(Duration.seconds(1), event -> {
                         TIMER += 1;
+                        // 超时自动判负
                         if (TIMER >= OVERTIME) {
                             STATE = LOSS;
                         }
+                        // 游戏胜负已确定
                         if (STATE != UNSURE) {
                             String path = WIN_IMG;
-                            timeline.stop();
+                            TIMELINE.stop();
                             if (STATE == LOSS) {
                                 path = LOSS_IMG;
                             } else {
                                 // 自定义模式不计入成绩
-                                if(GAME != GameEnum.CUSTOM) {
+                                if (GAME != GameEnum.CUSTOM) {
                                     Platform.runLater(() -> showDialog());
                                 }
                             }
@@ -117,8 +123,8 @@ public class GameController {
                         ledTime[2].switchSkin(TIMER % 10);
                     })
             );
-            timeline.setCycleCount(Animation.INDEFINITE);
-            timeline.play();
+            TIMELINE.setCycleCount(Animation.INDEFINITE);
+            TIMELINE.play();
         };
         clicked.addListener(clickListener);
     }
@@ -155,6 +161,7 @@ public class GameController {
                 button.setOnMouseClicked(event -> {
                     handleEvent(event);
                 });
+                // 添加按钮到指定位置
                 grid.add(button, j, i);
             }
         }
@@ -242,10 +249,20 @@ public class GameController {
                         STATE = WIN;
                     }
                 } else if (STATE == LOSS) {
-                    button.setStyle("-fx-background-size: contain; -fx-background-image: url(" + UNEXPLODED_IMG + ")");
+                    // 游戏失败, 显示所有地雷位置
+                    for (int i = 0; i < GAME.height; ++i) {
+                        for (int j = 0; j < GAME.width; ++j) {
+                            if (map[i][j] == BOOM) {
+                                Button btn = (Button) buttons.get(i * GAME.width + j);
+                                btn.setStyle("-fx-background-color:#ffffff; -fx-background-size: contain; -fx-background-image: url(" + UNEXPLODED_IMG + ")");
+                            }
+                        }
+                    }
+                    button.setStyle("-fx-background-color:#ffffff; -fx-background-size: contain; -fx-background-image: url(" + EXPLODED_IMG + ")");
                 }
             }
         }
+        // 触发监听, 修改剩余地雷数显示
         rest.set(REST_FLAG);
     }
 
@@ -260,11 +277,11 @@ public class GameController {
         double lenHorizontal = params.get("lenHorizontal");
 
         // 计算实际窗口宽高
-        WINDOW_WIDTH += lenHorizontal + thickness * 2;
-        WINDOW_HEIGHT += lenVertical;
+        WIDTH_OFFSET += lenHorizontal + thickness * 2;
+        HEIGHT_OFFSET += lenVertical;
 
         // 设置窗口大小
-        anchorPane.setPrefSize(WINDOW_WIDTH, lenVertical);
+        anchorPane.setPrefSize(WIDTH_OFFSET, lenVertical);
 
         // 设置网格布局位置
         AnchorPane.setTopAnchor(grid, offset + thickness);

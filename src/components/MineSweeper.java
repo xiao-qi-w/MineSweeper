@@ -11,7 +11,6 @@ import static components.Constant.*;
  * @time: 2023/5/31
  */
 public class MineSweeper {
-    // 初级(9×9,10雷)、中级(16×16,40雷)、高级(16×30,99雷)
     // 随机数
     private Random rand;
     // 不同难度规格的宽高
@@ -26,7 +25,6 @@ public class MineSweeper {
     }
 
     public MineSweeper(int width, int height, int bomb, int[][] map) {
-        STATE = UNSURE;
         this.rand = new Random();
         this.width = width;
         this.height = height;
@@ -50,13 +48,13 @@ public class MineSweeper {
         // 确定随机数据范围
         int count = height * width;
         // 开始随机
-        for (int t = bomb; t > 0; ) {
+        for (int rest = bomb; rest > 0; ) {
             int index = rand.nextInt(count);
-            // 如果当前位置可以设置为地雷, 标记该位置, 待分配地雷个数减一
+            // 如果当前位置可以设置为地雷, 标记该位置, 地雷剩余个数减一
             if (!set.contains(index)) {
                 set.add(index);
                 map[index / width][index % width] = BOOM;
-                t -= 1;
+                rest -= 1;
             }
         }
         // 统计地雷分布情况

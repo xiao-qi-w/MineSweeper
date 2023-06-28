@@ -18,6 +18,10 @@ public class LedNumber extends Control {
         return new LedNumberSkin(this, index);
     }
 
+    /**
+     * 切换数字显示
+     * @param index 要转化成的数字
+     */
     public void switchSkin(int index) {
         // 清空当前控件的子节点, 重新添加
         getChildren().clear();
