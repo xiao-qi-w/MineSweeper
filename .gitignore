@@ -8,5 +8,5 @@
 *.iml
 out
 gen
-ranks
-*.txt
+
+/src/ranks/*
