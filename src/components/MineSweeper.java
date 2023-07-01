@@ -78,8 +78,8 @@ public class MineSweeper {
         int count = 0;
         // 依次判断周围格子是否存在地雷
         for (int i = 0; i < 8; ++i) {
-            int newX = x + Constant.positions[i][0];
-            int newY = y + Constant.positions[i][1];
+            int newX = x + positions[i][0];
+            int newY = y + positions[i][1];
             if (newX > -1 && newX < height && newY > -1 && newY < width && map[newX][newY] == BOMB) {
                 count += 1;
             }

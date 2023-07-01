@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="99c8bb78-eca7-4816-8c38-f91fcf5d8e03" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MineSweeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MineSweeper.java" afterDir="false" />
     </list>
     <disabled>
       <disabled_changelists>
@@ -313,7 +312,7 @@
       <workItem from="1687764830530" duration="12499000" />
       <workItem from="1687938559433" duration="8656000" />
       <workItem from="1687948541411" duration="2095000" />
-      <workItem from="1688198704040" duration="659000" />
+      <workItem from="1688198704040" duration="3256000" />
     </task>
     <servers />
   </component>
