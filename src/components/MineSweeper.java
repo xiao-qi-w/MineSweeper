@@ -53,15 +53,15 @@ public class MineSweeper {
             // 如果当前位置可以设置为地雷, 标记该位置, 地雷剩余个数减一
             if (!set.contains(index)) {
                 set.add(index);
-                map[index / width][index % width] = BOOM;
+                map[index / width][index % width] = BOMB;
                 rest -= 1;
             }
         }
         // 统计地雷分布情况
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
-                if (map[i][j] != BOOM) {
-                    map[i][j] = countBoom(i, j);
+                if (map[i][j] != BOMB) {
+                    map[i][j] = countBomb(i, j);
                 }
             }
         }
@@ -74,13 +74,13 @@ public class MineSweeper {
      * @param y 纵坐标
      * @return count 地雷个数
      */
-    public int countBoom(int x, int y) {
+    public int countBomb(int x, int y) {
         int count = 0;
         // 依次判断周围格子是否存在地雷
         for (int i = 0; i < 8; ++i) {
             int newX = x + Constant.positions[i][0];
             int newY = y + Constant.positions[i][1];
-            if (newX > -1 && newX < height && newY > -1 && newY < width && map[newX][newY] == BOOM) {
+            if (newX > -1 && newX < height && newY > -1 && newY < width && map[newX][newY] == BOMB) {
                 count += 1;
             }
         }
@@ -101,12 +101,12 @@ public class MineSweeper {
                 int newX = x + positions[i][0];
                 int newY = y + positions[i][1];
                 if (newX > -1 && newX < height && newY > -1 && newY < width
-                        && map[newX][newY] != BOOM && map[newX][newY] < FLAG) {
+                        && map[newX][newY] != BOMB && map[newX][newY] < FLAG) {
                     // 递归展开非雷和未标记区域
                     clickCell(newX, newY);
                 }
             }
-        } else if (map[x][y] == BOOM) {
+        } else if (map[x][y] == BOMB) {
             // 点击到地雷, 游戏状态设置为失败
             STATE = LOSS;
         } else if (map[x][y] < BOUND) {

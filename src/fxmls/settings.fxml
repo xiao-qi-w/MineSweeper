@@ -64,7 +64,7 @@
         </Label>
         <TextField fx:id="numHeight" prefHeight="30.0" prefWidth="80.0"
                    AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="210.0"/>
-        <TextField fx:id="numBoom" prefHeight="30.0" prefWidth="80.0"
+        <TextField fx:id="numBomb" prefHeight="30.0" prefWidth="80.0"
                    AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="260.0"/>
         <TextField fx:id="numWidth" prefHeight="30.0" prefWidth="80.0"
                    AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="210.0"/>

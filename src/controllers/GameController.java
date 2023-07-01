@@ -252,7 +252,7 @@ public class GameController {
                     // 游戏失败, 显示所有地雷位置
                     for (int i = 0; i < GAME.height; ++i) {
                         for (int j = 0; j < GAME.width; ++j) {
-                            if (map[i][j] == BOOM) {
+                            if (map[i][j] == BOMB) {
                                 Button btn = (Button) buttons.get(i * GAME.width + j);
                                 btn.setStyle("-fx-background-color:#ffffff; -fx-background-size: contain; -fx-background-image: url(" + UNEXPLODED_IMG + ")");
                             }

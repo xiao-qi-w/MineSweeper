@@ -38,7 +38,7 @@ public class Constant {
 
     // 数字常量 [0:空白格, 9:地雷]
     public static final byte BLANK = 0;
-    public static final byte BOOM = 9;
+    public static final byte BOMB = 9;
     // [20:旗帜标记判断, 40:问号标记判断]
     public static final byte FLAG = 20;
     public static final byte GUESS = 40;

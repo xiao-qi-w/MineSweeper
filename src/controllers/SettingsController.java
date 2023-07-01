@@ -24,7 +24,7 @@ public class SettingsController {
     @FXML  // 单选按钮, 难度
     private RadioButton easy, medium, hard, custom;
     @FXML  // 文本框组, 自定义游戏数据
-    private TextField numWidth, numHeight, numBoom;
+    private TextField numWidth, numHeight, numBomb;
     @FXML // 保存按钮
     private Button save;
     @FXML // 辅助效果图
@@ -36,7 +36,7 @@ public class SettingsController {
         // 文本框默认不可编辑
         numWidth.setEditable(false);
         numHeight.setEditable(false);
-        numBoom.setEditable(false);
+        numBomb.setEditable(false);
         // 首先尝试使用已保存设置
         switch (GAME) {
             case MEDIUM:
@@ -49,10 +49,10 @@ public class SettingsController {
                 custom.setSelected(true);
                 numWidth.setEditable(true);
                 numHeight.setEditable(true);
-                numBoom.setEditable(true);
+                numBomb.setEditable(true);
                 numWidth.setText(GAME.width + "");
                 numHeight.setText(GAME.height + "");
-                numBoom.setText(GAME.bomb + "");
+                numBomb.setText(GAME.bomb + "");
                 break;
             default:
                 easy.setSelected(true);
@@ -73,15 +73,15 @@ public class SettingsController {
                 GAME = GameEnum.CUSTOM;
                 numWidth.setEditable(true);
                 numHeight.setEditable(true);
-                numBoom.setEditable(true);
+                numBomb.setEditable(true);
             } else {
                 // 清空文本框并设置为不可编辑
                 numWidth.setText(null);
                 numHeight.setText(null);
-                numBoom.setText(null);
+                numBomb.setText(null);
                 numWidth.setEditable(false);
                 numHeight.setEditable(false);
-                numBoom.setEditable(false);
+                numBomb.setEditable(false);
                 if (id.equals("easy")) {
                     GAME = GameEnum.EASY;
                 } else if (id.equals("medium")) {
@@ -101,7 +101,7 @@ public class SettingsController {
                         // 保存自定义输入
                         GAME.setWidth(Integer.parseInt(numWidth.getText()));
                         GAME.setHeight(Integer.parseInt(numHeight.getText()));
-                        GAME.setBomb(Integer.parseInt(numBoom.getText()));
+                        GAME.setBomb(Integer.parseInt(numBomb.getText()));
                     } catch (NumberFormatException e) {
                         // 输入问题导致的转换失败, 按简单设置处理
                         GAME.setWidth(9);
