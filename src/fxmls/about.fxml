@@ -19,7 +19,7 @@
             </font>
         </Label>
         <TextArea prefHeight="350.0" prefWidth="350.0"
-                  text="完整源码:&#10;https://github.com/xiao-qi-w/MineSweeper&#10;&#10;开发思路:&#10;视频演示:&#10;不熟悉GitHub可以使用百度网盘:&#10;"
+                  text="完整源码:&#10;https://github.com/xiao-qi-w/MineSweeper&#10;&#10;开发思路:&#10;https://blog.csdn.net/qq_43464624/article/details/131551497&#10;&#10;视频演示:&#10;https://www.bilibili.com/video/BV1jh4y1u7ad&#10;&#10;不熟悉GitHub可以使用百度网盘:&#10;https://pan.baidu.com/s/1GqGbfCdluc1yrrniAGh7SQ?pwd=abcd"
                   AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="101.0" editable="false"/>
     </children>
 </AnchorPane>
