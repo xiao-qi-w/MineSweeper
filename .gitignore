@@ -3,10 +3,10 @@
 ### Example user template
 
 # IntelliJ project files
-.idea
 *.xml
 *.iml
 out
 gen
 /src/ranks
 /src/ranks/*.txt
+/.idea/
