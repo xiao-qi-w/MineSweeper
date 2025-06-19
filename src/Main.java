@@ -17,7 +17,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            // 加载布局文件
+            // 加载布局文件, 初始化
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fxmls/menu.fxml"));
             Parent root = loader.load();
